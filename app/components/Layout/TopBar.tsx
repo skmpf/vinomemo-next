@@ -1,27 +1,39 @@
 import { Button, Heading, HStack } from "@chakra-ui/react";
 import Image from "next/image";
+import Link from "next/link";
 
 export const TopBar = () => {
   return (
-    <HStack paddingX={10} paddingY={8} justify="space-between">
-      <HStack spacing={6}>
+    <HStack
+      paddingX={{ base: 1, md: 10 }}
+      paddingY={{ base: 3, md: 6 }}
+      justify="space-between"
+    >
+      <HStack spacing={{ base: 3, md: 6 }}>
         <Image
           src="/logo.png"
           alt="VinoMemo logo"
-          height={142}
-          width={100}
+          height={35}
+          width={35}
           priority
         />
-        <Heading fontSize="48px" lineHeight="32px" color="black">
+        <Heading
+          fontSize={{ base: "xl", md: "3xl" }}
+          lineHeight={{ base: "13px", md: "20px" }}
+          color="black"
+        >
           Vino
           <br />
           Memo
         </Heading>
       </HStack>
-
-      <HStack spacing={4}>
-        <Button size="lg">Login</Button>
-        <Button size="lg">Signup</Button>
+      <HStack spacing={{ base: 2, md: 4 }}>
+        <Link href="/login">
+          <Button size={{ base: "md", md: "lg" }}>Login</Button>
+        </Link>
+        <Link href="/signup">
+          <Button size={{ base: "md", md: "lg" }}>Signup</Button>
+        </Link>
       </HStack>
     </HStack>
   );

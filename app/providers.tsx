@@ -16,7 +16,18 @@ export const theme = extendTheme({
           color: "brand.900",
           bg: "white",
           _hover: { color: "#FFF8F0", bg: "#9c204d" },
+          boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
         },
+      },
+    },
+    Heading: {
+      baseStyle: {
+        color: "brand.900",
+      },
+    },
+    Text: {
+      baseStyle: {
+        color: "brand.900",
       },
     },
   },

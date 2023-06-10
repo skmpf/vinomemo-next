@@ -1,6 +1,7 @@
 "use client";
 
-import { Box, Container } from "@chakra-ui/react";
+import "./globals.css";
+import { Container } from "@chakra-ui/react";
 import { TopBar } from "./components/Layout/TopBar";
 import { Providers } from "./providers";
 
@@ -11,22 +12,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>
+      <body style={{ backgroundColor: "#FFF8F0" }}>
         <Providers>
-          <Box
-            bg="brand.800"
-            minH="100vh"
-            position="fixed"
-            top={0}
-            bottom={0}
-            left={0}
-            right={0}
-            overflow="auto"
-          >
+          <Container maxW="8xl" h="100vh" display="flex" flexDirection="column">
             <TopBar />
-            {/* <Container maxW="container.md">{children}</Container> */}
             {children}
-          </Box>
+          </Container>
         </Providers>
       </body>
     </html>

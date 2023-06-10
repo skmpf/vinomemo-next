@@ -1,7 +1,7 @@
 import { Noto_Serif, Roboto } from "next/font/google";
 
 export const notoSerif = Noto_Serif({
-  weight: "400",
+  weight: ["400", "700"],
   subsets: ["latin"],
   display: "swap",
 });
