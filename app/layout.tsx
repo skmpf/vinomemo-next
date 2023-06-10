@@ -1,7 +1,8 @@
 "use client";
 
+import { Box, Container } from "@chakra-ui/react";
+import { TopBar } from "./components/Layout/TopBar";
 import { Providers } from "./providers";
-import { Box, Button, Heading, HStack, Image } from "@chakra-ui/react";
 
 export default function RootLayout({
   children,
@@ -22,26 +23,8 @@ export default function RootLayout({
             right={0}
             overflow="auto"
           >
-            <HStack paddingX={10} paddingY={8} justify="space-between">
-              <HStack spacing={6}>
-                <Image
-                  src="./logo.png"
-                  alt="VinoMemo logo"
-                  height="142px"
-                  width="100px"
-                />
-                <Heading fontSize="48px" lineHeight="32px">
-                  Vino
-                  <br />
-                  Memo
-                </Heading>
-              </HStack>
-
-              <HStack>
-                <Button size="lg">Login</Button>
-                <Button size="lg">Signup</Button>
-              </HStack>
-            </HStack>
+            <TopBar />
+            {/* <Container maxW="container.md">{children}</Container> */}
             {children}
           </Box>
         </Providers>
