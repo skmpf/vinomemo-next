@@ -1,8 +1,7 @@
 "use client";
 
 import "./globals.css";
-import { Container } from "@chakra-ui/react";
-import { TopBar } from "./components/Layout/TopBar";
+import { TopBar } from "./components/Layout/elements/TopBar";
 import { Providers } from "./providers";
 
 export default function RootLayout({
@@ -12,12 +11,17 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body style={{ backgroundColor: "#FFF8F0" }}>
+      <body
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          minHeight: "100vh",
+          backgroundColor: "#FFF8F0",
+        }}
+      >
         <Providers>
-          <Container maxW="8xl" h="100vh" display="flex" flexDirection="column">
-            <TopBar />
-            {children}
-          </Container>
+          <TopBar />
+          {children}
         </Providers>
       </body>
     </html>

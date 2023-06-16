@@ -1,28 +1,23 @@
 "use client";
 
-import { Box, Heading, Text, VStack } from "@chakra-ui/react";
+import { Box, Flex, Heading, Text, VStack } from "@chakra-ui/react";
 import Image from "next/image";
 
-export const Home = () => {
+export const Landing = () => {
   return (
     <Box
-      paddingX={{ md: "43px" }}
-      h="100%"
+      px={{ base: 3, md: 10 }}
       display="flex"
+      flexGrow={1}
       flexDirection="column"
       justifyContent="space-between"
     >
-      <Box
-        height="100%"
-        display="flex"
-        flexDirection="column"
-        justifyContent="center"
-      >
+      <Flex flex={1} direction="column" justifyContent="center">
         <Heading
           as="h1"
           size={{ base: "2xl", md: "3xl" }}
           fontWeight="regular"
-          mb="20px"
+          mb={5}
         >
           Note down your wine tasting
           <br />
@@ -34,8 +29,8 @@ export const Home = () => {
           Our note app is the perfect way to reference and remember your wine
           tastings.
         </Text>
-      </Box>
-      <VStack>
+      </Flex>
+      <Flex width="100%" justifyContent="center">
         <Image
           src="/landing.svg"
           alt="Cheers"
@@ -43,7 +38,7 @@ export const Home = () => {
           height={500}
           priority
         />
-      </VStack>
+      </Flex>
     </Box>
   );
 };

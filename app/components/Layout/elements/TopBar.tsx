@@ -5,11 +5,11 @@ import Link from "next/link";
 export const TopBar = () => {
   return (
     <HStack
-      paddingX={{ base: 1, md: 10 }}
-      paddingY={{ base: 3, md: 6 }}
+      px={{ base: 4, md: 24 }}
+      py={{ base: 3, md: 5 }}
       justify="space-between"
     >
-      <HStack spacing={{ base: 3, md: 6 }}>
+      <HStack as={Link} href="/" spacing={{ base: 3, md: 6 }}>
         <Image
           src="/logo.png"
           alt="VinoMemo logo"
@@ -19,7 +19,7 @@ export const TopBar = () => {
         />
         <Heading
           fontSize={{ base: "xl", md: "3xl" }}
-          lineHeight={{ base: "13px", md: "20px" }}
+          lineHeight={{ base: 3, md: 5 }}
           color="black"
         >
           Vino
@@ -27,6 +27,7 @@ export const TopBar = () => {
           Memo
         </Heading>
       </HStack>
+      {/* TODO: Display buttons on unlogged pages */}
       <HStack spacing={{ base: 2, md: 4 }}>
         <Link href="/login">
           <Button size={{ base: "md", md: "lg" }}>Login</Button>
