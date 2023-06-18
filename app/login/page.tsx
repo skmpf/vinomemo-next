@@ -6,7 +6,7 @@ export default function Login() {
   return (
     <UserLayout
       title="Log in to <b>VinoMemo</b>"
-      detail="Welcome back!<br/>Sign in with your email to continue"
+      detail="Welcome back! Sign in with your email to continue"
     >
       <LoginForm />
       <SwitchToReg />
