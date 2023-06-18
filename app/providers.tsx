@@ -39,7 +39,7 @@ export const theme = extendTheme({
   },
   fonts: {
     body: roboto.style.fontFamily,
-    heading: notoSerif.style.fontFamily,
+    notoSerif: notoSerif.style.fontFamily,
   },
 });
 

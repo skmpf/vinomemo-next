@@ -1,9 +1,11 @@
 "use client";
 
-import { Box, Flex, Heading, Text, VStack } from "@chakra-ui/react";
+import { Box, Flex, Heading, Text, useTheme } from "@chakra-ui/react";
 import Image from "next/image";
 
 export const Landing = () => {
+  const theme = useTheme();
+
   return (
     <Box
       px={{ base: 3, md: 10 }}
@@ -26,8 +28,10 @@ export const Landing = () => {
           </Text>
         </Heading>
         <Text fontSize={{ base: "lg", md: "2xl" }} fontStyle="italic">
-          Our note app is the perfect way to reference and remember your wine
-          tastings.
+          <Text as="span" fontFamily={theme.fonts.notoSerif}>
+            VinoMemo
+          </Text>{" "}
+          is the perfect way to reference and remember your wine tastings.
         </Text>
       </Flex>
       <Flex width="100%" justifyContent="center">

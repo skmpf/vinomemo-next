@@ -1,8 +1,10 @@
-import { Button, Heading, HStack } from "@chakra-ui/react";
+import { Button, Heading, HStack, useTheme } from "@chakra-ui/react";
 import Image from "next/image";
 import Link from "next/link";
 
 export const TopBar = () => {
+  const theme = useTheme();
+
   return (
     <HStack
       px={{ base: 4, md: 24 }}
@@ -19,6 +21,7 @@ export const TopBar = () => {
         />
         <Heading
           fontSize={{ base: "xl", md: "3xl" }}
+          fontFamily={theme.fonts.notoSerif}
           lineHeight={{ base: 3, md: 5 }}
           color="black"
         >

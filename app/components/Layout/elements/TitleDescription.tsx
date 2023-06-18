@@ -1,4 +1,4 @@
-import { Box, Heading, Text, VStack } from "@chakra-ui/react";
+import { Box, Heading, Text, VStack, useTheme } from "@chakra-ui/react";
 
 export type TitleDescriptionProps = {
   title: string;
@@ -10,9 +10,22 @@ export const TitleDescription: React.FC<TitleDescriptionProps> = ({
   detail,
   alignItems,
 }) => {
+  const theme = useTheme();
+
   return (
     <VStack alignItems={alignItems} spacing="4" w="100%" mb={8}>
-      <Heading>{title}</Heading>
+      <Heading>
+        {title.split("<b>") ? (
+          <>
+            {title.split("<b>")[0]}{" "}
+            <Text as="span" fontFamily={theme.fonts.notoSerif}>
+              {title.split("<b>")[1].replace("</b>", "")}
+            </Text>
+          </>
+        ) : (
+          title
+        )}
+      </Heading>
       <Box>
         {detail &&
           detail.split("<br/>").map((line, index) => {
