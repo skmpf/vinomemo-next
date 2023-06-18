@@ -15,7 +15,7 @@ export const TitleDescription: React.FC<TitleDescriptionProps> = ({
   return (
     <VStack alignItems={alignItems} spacing="4" w="100%" mb={8}>
       <Heading>
-        {title.split("<b>") ? (
+        {title.includes("<b>") ? (
           <>
             {title.split("<b>")[0]}{" "}
             <Text as="span" fontFamily={theme.fonts.notoSerif}>
@@ -29,7 +29,20 @@ export const TitleDescription: React.FC<TitleDescriptionProps> = ({
       <Box>
         {detail &&
           detail.split("<br/>").map((line, index) => {
-            return <Text key={index}>{line}</Text>;
+            return (
+              <Text key={index}>
+                {line.includes("<b>") ? (
+                  <>
+                    {line.split("<b>")[0]}{" "}
+                    <Text as="span" fontFamily={theme.fonts.notoSerif}>
+                      {line.split("<b>")[1].replace("</b>", "")}
+                    </Text>
+                  </>
+                ) : (
+                  line
+                )}
+              </Text>
+            );
           })}
       </Box>
     </VStack>
