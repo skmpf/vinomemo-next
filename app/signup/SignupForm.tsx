@@ -7,12 +7,16 @@ import {
   FormHelperText,
   FormLabel,
   Input,
+  Spinner,
   VStack,
 } from "@chakra-ui/react";
 import { Field, Formik } from "formik";
 import * as Yup from "yup";
+import { useSignup } from "../hooks/useSignup";
 
 export const SignupForm = () => {
+  const { isLoading, error, signupUser } = useSignup();
+
   return (
     <Formik
       initialValues={{
@@ -22,7 +26,7 @@ export const SignupForm = () => {
         passwordConfirm: "",
       }}
       validationSchema={Yup.object().shape({
-        name: Yup.string(),
+        name: Yup.string().required("Field must not be empty."),
         email: Yup.string()
           .email("The format of your email address is not valid.")
           .required("Field must not be empty."),
@@ -37,7 +41,7 @@ export const SignupForm = () => {
       validateOnBlur={true}
       validateOnChange={false}
       onSubmit={(values) => {
-        alert(JSON.stringify(values, null, 2));
+        !signupUser(values.name, values.password, values.email);
       }}
     >
       {({ handleSubmit, errors, touched }) => (
@@ -116,8 +120,13 @@ export const SignupForm = () => {
                 <FormErrorMessage>{errors.passwordConfirm}</FormErrorMessage>
               )}
             </FormControl>
-            <Button type="submit" width="full" textTransform="uppercase">
-              Sign up
+            <Button
+              type="submit"
+              width="full"
+              textTransform="uppercase"
+              isDisabled={isLoading}
+            >
+              {isLoading ? <Spinner /> : "Sign up"}
             </Button>
           </VStack>
         </form>

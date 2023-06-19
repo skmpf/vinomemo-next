@@ -6,13 +6,17 @@ import {
   FormErrorMessage,
   FormHelperText,
   FormLabel,
+  Spinner,
   Input,
   VStack,
 } from "@chakra-ui/react";
 import { Field, Formik } from "formik";
 import * as Yup from "yup";
+import { useLogin } from "../hooks/useLogin";
 
 export const LoginForm = () => {
+  const { isLoading, error, loginUser } = useLogin();
+
   return (
     <Formik
       initialValues={{
@@ -31,7 +35,7 @@ export const LoginForm = () => {
       validateOnBlur={true}
       validateOnChange={false}
       onSubmit={(values) => {
-        alert(JSON.stringify(values, null, 2));
+        loginUser(values.email, values.password);
       }}
     >
       {({ handleSubmit, errors, touched }) => (
@@ -74,8 +78,13 @@ export const LoginForm = () => {
                 <FormErrorMessage>{errors.password}</FormErrorMessage>
               )}
             </FormControl>
-            <Button type="submit" width="full" textTransform="uppercase">
-              Login
+            <Button
+              type="submit"
+              width="full"
+              textTransform="uppercase"
+              isDisabled={isLoading}
+            >
+              {isLoading ? <Spinner /> : "Log in"}
             </Button>
           </VStack>
         </form>
