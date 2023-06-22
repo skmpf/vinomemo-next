@@ -41,7 +41,7 @@ export const SignupForm = () => {
       validateOnBlur={true}
       validateOnChange={false}
       onSubmit={(values) => {
-        !signupUser(values.name, values.password, values.email);
+        !isLoading && signupUser(values.name, values.password, values.email);
       }}
     >
       {({ handleSubmit, errors, touched }) => (

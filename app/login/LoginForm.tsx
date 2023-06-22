@@ -35,7 +35,7 @@ export const LoginForm = () => {
       validateOnBlur={true}
       validateOnChange={false}
       onSubmit={(values) => {
-        loginUser(values.email, values.password);
+        !isLoading && loginUser(values.email, values.password);
       }}
     >
       {({ handleSubmit, errors, touched }) => (

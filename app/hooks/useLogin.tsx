@@ -5,7 +5,7 @@ import Cookies from "js-cookie";
 type UseLoginResponse = {
   isLoading: boolean;
   error: any;
-  loginUser: (username: string, password: string) => Promise<void>;
+  loginUser: (email: string, password: string) => Promise<void>;
 };
 
 const VINOMEMO_API_URL = process.env.VINOMEMO_API_URL;
@@ -15,7 +15,7 @@ export const useLogin = (): UseLoginResponse => {
   const [error, setError] = useState<any>(null);
   const router = useRouter();
 
-  const loginUser = async (username: string, password: string) => {
+  const loginUser = async (email: string, password: string) => {
     setIsLoading(true);
     setError(null);
 
@@ -25,7 +25,7 @@ export const useLogin = (): UseLoginResponse => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ username, password }),
+        body: JSON.stringify({ email, password }),
       });
 
       if (!response.ok) {

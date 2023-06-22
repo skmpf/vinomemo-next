@@ -14,7 +14,7 @@ export default function Home() {
         />
         <meta name="keywords" content="wine,notes,tasting" />
         <link rel="icon" href="/favicon.ico" />
-        <link rel="canonical" href="https://vinomemo-next.vercel.app/" />
+        <link rel="canonical" href="https://vinomemo.vercel.app/" />
       </Head>
       <Landing />
     </>
