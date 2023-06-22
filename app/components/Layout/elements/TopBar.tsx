@@ -32,12 +32,12 @@ export const TopBar = () => {
       </HStack>
       {/* TODO: Display buttons on unlogged pages */}
       <HStack spacing={{ base: 2, md: 4 }}>
-        <Link href="/login">
-          <Button size={{ base: "md", md: "lg" }}>Login</Button>
-        </Link>
-        <Link href="/signup">
-          <Button size={{ base: "md", md: "lg" }}>Signup</Button>
-        </Link>
+        <Button as={Link} href="/login" size={{ base: "md", md: "lg" }}>
+          Login
+        </Button>
+        <Button as={Link} href="/signup" size={{ base: "md", md: "lg" }}>
+          Signup
+        </Button>
       </HStack>
     </HStack>
   );
