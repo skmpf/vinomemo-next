@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import Cookies from "js-cookie";
+import { setCookie } from "cookies-next";
 
 type UseLoginResponse = {
   isLoading: boolean;
@@ -34,7 +34,7 @@ export const useLogin = (): UseLoginResponse => {
 
       const data = await response.json();
 
-      Cookies.set("jwt", data.token, { expires: 7 });
+      setCookie("jwt", data.token);
 
       router.push("/notes");
     } catch (err) {
