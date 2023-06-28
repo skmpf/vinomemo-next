@@ -1,8 +1,13 @@
-import { UserLayout } from "../components/Layout/UserLayout";
+import { UserLayout } from "../_components/Layout/UserLayout";
 import { LoginForm } from "./LoginForm";
-import { SwitchToReg } from "../components/SwitchToReg";
+import { SwitchToReg } from "../_components/SwitchToReg";
+import { redirect } from "next/navigation";
+import { authorize } from "../_utils/authentication";
 
-export default function Login() {
+export default async function Login() {
+  const user = await authorize();
+  user && redirect("/notes");
+
   return (
     <UserLayout
       title="Log in to <b>VinoMemo</b>"

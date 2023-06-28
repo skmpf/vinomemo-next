@@ -1,7 +1,5 @@
-"use client";
-
 import "./globals.css";
-import { TopBar } from "./components/Layout/elements/TopBar";
+import { TopBar } from "./_components/Layout/elements/TopBar";
 import { Providers } from "./providers";
 
 export default function RootLayout({

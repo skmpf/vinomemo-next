@@ -1,7 +1,7 @@
 "use client";
 
-import { Box, Flex, Heading, Text, useTheme } from "@chakra-ui/react";
 import Image from "next/image";
+import { Box, Flex, Heading, Text, useTheme } from "@chakra-ui/react";
 
 export const Landing = () => {
   const theme = useTheme();

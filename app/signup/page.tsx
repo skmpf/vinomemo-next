@@ -1,8 +1,13 @@
-import { UserLayout } from "../components/Layout/UserLayout";
+import { UserLayout } from "../_components/Layout/UserLayout";
 import { SignupForm } from "./SignupForm";
-import { SwitchToLogin } from "../components/SwitchToLogin";
+import { SwitchToLogin } from "../_components/SwitchToLogin";
+import { redirect } from "next/navigation";
+import { authorize } from "../_utils/authentication";
 
-export default function Signup() {
+export default async function Signup() {
+  const user = await authorize();
+  user && redirect("/notes");
+
   return (
     <UserLayout
       title="Sign up with email"

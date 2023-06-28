@@ -1,3 +1,5 @@
+"use client";
+
 import { Box, Heading, Text, VStack, useTheme } from "@chakra-ui/react";
 
 export type TitleDescriptionProps = {
