@@ -8,7 +8,7 @@ export default async function Notes() {
   !user && redirect("/login");
 
   return (
-    <UserLayout title="Notes" detail="A list of all your notes">
+    <UserLayout>
       <NotesList />
     </UserLayout>
   );
