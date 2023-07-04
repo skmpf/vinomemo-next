@@ -11,6 +11,7 @@ export const authorize = async () => {
     headers: {
       Authorization: `Bearer ${token}`,
     },
+    cache: "no-store",
   });
   if (!res.ok) return null;
 
