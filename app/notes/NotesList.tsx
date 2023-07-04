@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { Button, Flex, HStack, Heading, Stack } from "@chakra-ui/react";
-import { NoteCard } from "../_components/Note/NoteCard";
+import { NoteCard } from "./NoteCard";
 
 export const NotesList = () => {
   return (
