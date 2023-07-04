@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { Button, Flex, HStack, Heading, Stack } from "@chakra-ui/react";
 import { NoteCard } from "../_components/Note/NoteCard";
 
@@ -10,7 +11,9 @@ export const NotesList = () => {
         <Heading as="h2" size="md">
           My notes
         </Heading>
-        <Button size="lg">Add</Button>
+        <Button as={Link} href="/notes/create" size="lg">
+          Add
+        </Button>
       </HStack>
       <Stack spacing={4}>
         <NoteCard />
