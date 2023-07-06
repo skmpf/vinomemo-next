@@ -32,7 +32,7 @@ export const LoginForm = () => {
           .max(20, "Your password must contain 20 characters or less.")
           .required("Field must not be empty."),
       })}
-      validateOnBlur={true}
+      validateOnBlur={false}
       validateOnChange={false}
       onSubmit={(values) => {
         !isLoading && loginUser(values.email, values.password);
@@ -54,6 +54,8 @@ export const LoginForm = () => {
                 id="email"
                 name="email"
                 type="email"
+                focusBorderColor="gray.400"
+                errorBorderColor="brand.900"
               />
               {!errors.email ? (
                 <FormHelperText minH={3.5}></FormHelperText>
@@ -71,6 +73,8 @@ export const LoginForm = () => {
                 id="password"
                 name="password"
                 type="password"
+                focusBorderColor="gray.400"
+                errorBorderColor="brand.900"
               />
               {!errors.password ? (
                 <FormHelperText minH={3.5}></FormHelperText>

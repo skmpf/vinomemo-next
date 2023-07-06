@@ -38,7 +38,7 @@ export const SignupForm = () => {
           .oneOf([Yup.ref("password")], "Your password must match")
           .required("Field must not be empty."),
       })}
-      validateOnBlur={true}
+      validateOnBlur={false}
       validateOnChange={false}
       onSubmit={(values) => {
         !isLoading && signupUser(values.name, values.password, values.email);
@@ -60,6 +60,8 @@ export const SignupForm = () => {
                 id="name"
                 name="name"
                 type="text"
+                focusBorderColor="gray.400"
+                errorBorderColor="brand.900"
               />
               {!errors.name ? (
                 <FormHelperText minH={3.5}></FormHelperText>
@@ -77,6 +79,8 @@ export const SignupForm = () => {
                 id="email"
                 name="email"
                 type="email"
+                focusBorderColor="gray.400"
+                errorBorderColor="brand.900"
               />
               {!errors.email ? (
                 <FormHelperText minH={3.5}></FormHelperText>
@@ -94,6 +98,8 @@ export const SignupForm = () => {
                 id="password"
                 name="password"
                 type="password"
+                focusBorderColor="gray.400"
+                errorBorderColor="brand.900"
               />
               {!errors.password ? (
                 <FormHelperText minH={3.5}></FormHelperText>
@@ -113,6 +119,8 @@ export const SignupForm = () => {
                 id="passwordConfirm"
                 name="passwordConfirm"
                 type="password"
+                focusBorderColor="gray.400"
+                errorBorderColor="brand.900"
               />
               {!errors.passwordConfirm ? (
                 <FormHelperText minH={3.5}></FormHelperText>
