@@ -12,7 +12,10 @@ export interface INote {
   };
   appearance?: {
     intensity?: number;
-    color?: string;
+    color?: {
+      main?: string;
+      variant?: string;
+    };
   };
   nose?: {
     intensity?: number;
@@ -46,8 +49,11 @@ export const NoteFormInitialValues: INote = {
     alcohol: undefined,
   },
   appearance: {
-    intensity: 0,
-    color: "",
+    intensity: undefined,
+    color: {
+      main: "",
+      variant: "",
+    },
   },
   nose: {
     intensity: 0,
@@ -82,7 +88,10 @@ export const NoteFormValidationSchema = Yup.object().shape({
   }),
   appearance: Yup.object().shape({
     intensity: Yup.number(),
-    color: Yup.string(),
+    color: Yup.object().shape({
+      main: Yup.string(),
+      variant: Yup.string(),
+    }),
   }),
   nose: Yup.object().shape({
     intensity: Yup.number(),

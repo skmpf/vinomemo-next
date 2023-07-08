@@ -6,26 +6,22 @@ import {
   FormErrorMessage,
   FormLabel,
   HStack,
-  Heading,
   Input,
-  VStack,
 } from "@chakra-ui/react";
 import { Field, FormikErrors, FormikTouched } from "formik";
+import { FormContainer } from "./FormContainer";
 
 interface FormFieldsContainerProps {
   errors: FormikErrors<INote>;
   touched: FormikTouched<INote>;
 }
 
-export const InfoFormContainer: React.FC<FormFieldsContainerProps> = ({
+export const LabelForm: React.FC<FormFieldsContainerProps> = ({
   errors,
   touched,
 }) => {
   return (
-    <VStack spacing={4} margin="auto" width="100%" maxW={96} my={6}>
-      <Heading as="h2" size="md" mb={4}>
-        From the bottle
-      </Heading>
+    <FormContainer title="From the label">
       <FormControl
         isInvalid={!!errors.information?.name && touched.information?.name}
       >
@@ -162,6 +158,6 @@ export const InfoFormContainer: React.FC<FormFieldsContainerProps> = ({
           />
         </HStack>
       </FormControl>
-    </VStack>
+    </FormContainer>
   );
 };

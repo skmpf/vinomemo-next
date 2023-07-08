@@ -1,14 +1,15 @@
 "use client";
 
+import { useState } from "react";
 import { Button, Flex, HStack, Link, Spinner } from "@chakra-ui/react";
 import { Form, Formik } from "formik";
-import { useState } from "react";
-import { InfoFormContainer } from "./InfoFormContainer";
 import {
   INote,
   NoteFormInitialValues,
   NoteFormValidationSchema,
 } from "@/app/_modules/note";
+import { LookForm } from "./LookForm";
+import { LabelForm } from "./LabelForm";
 
 export const NoteForm = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -38,7 +39,8 @@ export const NoteForm = () => {
                 Close
               </Button>
             </HStack>
-            <InfoFormContainer errors={errors} touched={touched} />
+            <LabelForm errors={errors} touched={touched} />
+            <LookForm errors={errors} touched={touched} />
           </Form>
         )}
       </Formik>

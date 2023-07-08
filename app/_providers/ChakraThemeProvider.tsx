@@ -36,6 +36,18 @@ export const theme = extendTheme({
       900: "#C94264",
       800: "#FFF8F0",
     },
+    wine: {
+      50: "#ffe7f0",
+      100: "#f3c1ce",
+      200: "#e59bae",
+      300: "#d8738d",
+      400: "#cc4d6d",
+      500: "#b33353",
+      600: "#8c2741",
+      700: "#651a2e",
+      800: "#3e0e1c",
+      900: "#1c0108",
+    },
   },
   fonts: {
     body: roboto.style.fontFamily,
