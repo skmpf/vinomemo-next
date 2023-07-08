@@ -2,10 +2,10 @@
 
 import { INote } from "@/app/_modules/note";
 import {
+  Flex,
   FormControl,
   FormErrorMessage,
   FormLabel,
-  HStack,
   Input,
 } from "@chakra-ui/react";
 import { Field, FormikErrors, FormikTouched } from "formik";
@@ -25,7 +25,10 @@ export const LabelForm: React.FC<FormFieldsContainerProps> = ({
       <FormControl
         isInvalid={!!errors.information?.name && touched.information?.name}
       >
-        <HStack justifyContent="space-between">
+        <Flex
+          justifyContent="space-between"
+          flexDirection={{ base: "column", md: "row" }}
+        >
           <FormLabel htmlFor="text" color="brand.900">
             Name
           </FormLabel>
@@ -37,9 +40,9 @@ export const LabelForm: React.FC<FormFieldsContainerProps> = ({
             type="text"
             focusBorderColor="gray.400"
             errorBorderColor="brand.900"
-            width="75%"
+            width={{ base: "100%", md: "75%" }}
           />
-        </HStack>
+        </Flex>
         <FormErrorMessage>{errors.information?.name}</FormErrorMessage>
       </FormControl>
       <FormControl
@@ -47,7 +50,10 @@ export const LabelForm: React.FC<FormFieldsContainerProps> = ({
           !!errors.information?.country && touched.information?.country
         }
       >
-        <HStack justifyContent="space-between">
+        <Flex
+          justifyContent="space-between"
+          flexDirection={{ base: "column", md: "row" }}
+        >
           <FormLabel htmlFor="text" color="brand.900">
             Country
           </FormLabel>
@@ -58,14 +64,17 @@ export const LabelForm: React.FC<FormFieldsContainerProps> = ({
             name="information.country"
             type="text"
             focusBorderColor="gray.400"
-            width="75%"
+            width={{ base: "100%", md: "75%" }}
           />
-        </HStack>
+        </Flex>
       </FormControl>
       <FormControl
         isInvalid={!!errors.information?.region && touched.information?.region}
       >
-        <HStack justifyContent="space-between">
+        <Flex
+          justifyContent="space-between"
+          flexDirection={{ base: "column", md: "row" }}
+        >
           <FormLabel htmlFor="text" color="brand.900">
             Region
           </FormLabel>
@@ -76,14 +85,17 @@ export const LabelForm: React.FC<FormFieldsContainerProps> = ({
             name="information.region"
             type="text"
             focusBorderColor="gray.400"
-            width="75%"
+            width={{ base: "100%", md: "75%" }}
           />
-        </HStack>
+        </Flex>
       </FormControl>
       <FormControl
         isInvalid={!!errors.information?.grapes && touched.information?.grapes}
       >
-        <HStack justifyContent="space-between">
+        <Flex
+          justifyContent="space-between"
+          flexDirection={{ base: "column", md: "row" }}
+        >
           <FormLabel htmlFor="text" color="brand.900">
             Grapes
           </FormLabel>
@@ -94,16 +106,19 @@ export const LabelForm: React.FC<FormFieldsContainerProps> = ({
             name="information.grapes"
             type="text"
             focusBorderColor="gray.400"
-            width="75%"
+            width={{ base: "100%", md: "75%" }}
           />
-        </HStack>
+        </Flex>
       </FormControl>
       <FormControl
         isInvalid={
           !!errors.information?.producer && touched.information?.producer
         }
       >
-        <HStack justifyContent="space-between">
+        <Flex
+          justifyContent="space-between"
+          flexDirection={{ base: "column", md: "row" }}
+        >
           <FormLabel htmlFor="text" color="brand.900">
             Producer
           </FormLabel>
@@ -114,16 +129,19 @@ export const LabelForm: React.FC<FormFieldsContainerProps> = ({
             name="information.producer"
             type="text"
             focusBorderColor="gray.400"
-            width="75%"
+            width={{ base: "100%", md: "75%" }}
           />
-        </HStack>
+        </Flex>
       </FormControl>
       <FormControl
         isInvalid={
           !!errors.information?.vintage && touched.information?.vintage
         }
       >
-        <HStack justifyContent="space-between">
+        <Flex
+          justifyContent="space-between"
+          flexDirection={{ base: "column", md: "row" }}
+        >
           <FormLabel htmlFor="text" color="brand.900">
             Vintage
           </FormLabel>
@@ -134,16 +152,19 @@ export const LabelForm: React.FC<FormFieldsContainerProps> = ({
             name="information.vintage"
             type="number"
             focusBorderColor="gray.400"
-            width="75%"
+            width={{ base: "100%", md: "75%" }}
           />
-        </HStack>
+        </Flex>
       </FormControl>
       <FormControl
         isInvalid={
           !!errors.information?.alcohol && touched.information?.alcohol
         }
       >
-        <HStack justifyContent="space-between">
+        <Flex
+          justifyContent="space-between"
+          flexDirection={{ base: "column", md: "row" }}
+        >
           <FormLabel htmlFor="text" color="brand.900">
             ABV
           </FormLabel>
@@ -154,9 +175,9 @@ export const LabelForm: React.FC<FormFieldsContainerProps> = ({
             name="information.alcohol"
             type="text"
             focusBorderColor="gray.400"
-            width="75%"
+            width={{ base: "100%", md: "75%" }}
           />
-        </HStack>
+        </Flex>
       </FormControl>
     </FormContainer>
   );

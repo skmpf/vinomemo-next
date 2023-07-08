@@ -70,7 +70,8 @@ const SelectButton: React.FC<SelectButtonProps> = ({
         variant="outline"
         aspectRatio={1 / 1}
         borderRadius="50%"
-        backgroundColor={backgroundColor}
+        bg={backgroundColor}
+        boxShadow="md"
         _focus={{
           boxShadow: "outline",
         }}
@@ -80,7 +81,9 @@ const SelectButton: React.FC<SelectButtonProps> = ({
         sx={{ boxShadow: selected === color && "outline" }}
         onClick={() => handleClick(color)}
       ></Flex>
-      <Text>{color}</Text>
+      <Text textTransform="uppercase" fontSize="xs">
+        {color}
+      </Text>
     </VStack>
   );
 };
@@ -91,13 +94,12 @@ const MainSelect: React.FC<MainSelectProps> = ({
   ...props
 }) => {
   const [, , helpers] = useField(props.name);
-  const [, , variantHelpers] = useField("variant");
-  const { setValue } = helpers;
+  const [, , variantHelpers] = useField("appearance.color.variant");
 
   const handleClick = (color: string) => {
-    setValue(color);
-    callback(color);
+    helpers.setValue(color);
     variantHelpers.setValue("");
+    callback(color);
   };
 
   return (
@@ -122,11 +124,12 @@ const VariantSelect: React.FC<VariantSelectProps> = ({
   ...props
 }) => {
   const [, , helpers] = useField(props.name);
-  const { setValue } = helpers;
+  const [, , mainHelpers] = useField("appearance.color.main");
 
-  const handleClick = (main: string) => {
-    setValue(main);
-    callback(main);
+  const handleClick = (color: string) => {
+    helpers.setValue(color);
+    mainHelpers.setValue(selectedColor);
+    callback(color);
   };
 
   return (
@@ -156,7 +159,7 @@ export const ColorSelect = ({ userColor = "white", userVariant = "" }) => {
   };
 
   return (
-    <VStack width="75%">
+    <VStack width={{ base: "100%", md: "75%" }}>
       <Flex width="100%" justifyContent="space-between" alignItems="center">
         <MainSelect
           name="appearance.color.main"

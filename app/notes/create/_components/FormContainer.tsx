@@ -12,7 +12,7 @@ export const FormContainer: React.FC<ContainerProps> = ({
   title,
 }) => {
   return (
-    <VStack spacing={4} margin="auto" width="100%" maxW={96} mb={14}>
+    <VStack spacing={4} margin="auto" width="100%" mb={14}>
       <Heading as="h2" size="md">
         {title}
       </Heading>

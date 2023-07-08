@@ -5,13 +5,13 @@ export interface INote {
     name: string;
     country?: string;
     region?: string;
-    grapes?: string[];
+    grapes?: string;
     producer?: string;
     vintage?: number;
     alcohol?: number;
   };
   appearance?: {
-    intensity?: number;
+    intensity?: string;
     color?: {
       main?: string;
       variant?: string;
@@ -43,13 +43,13 @@ export const NoteFormInitialValues: INote = {
     name: "",
     country: "",
     region: "",
-    grapes: [],
+    grapes: "",
     producer: "",
     vintage: undefined,
     alcohol: undefined,
   },
   appearance: {
-    intensity: undefined,
+    intensity: "",
     color: {
       main: "",
       variant: "",
@@ -81,13 +81,13 @@ export const NoteFormValidationSchema = Yup.object().shape({
     name: Yup.string().required("Required"),
     country: Yup.string(),
     region: Yup.string(),
-    grapes: Yup.array().of(Yup.string()),
+    grapes: Yup.string(),
     producer: Yup.string(),
     vintage: Yup.number(),
     alcohol: Yup.number(),
   }),
   appearance: Yup.object().shape({
-    intensity: Yup.number(),
+    intensity: Yup.string(),
     color: Yup.object().shape({
       main: Yup.string(),
       variant: Yup.string(),
