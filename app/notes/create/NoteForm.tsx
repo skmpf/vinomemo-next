@@ -8,8 +8,8 @@ import {
   NoteFormInitialValues,
   NoteFormValidationSchema,
 } from "@/app/_modules/note";
-import { LookForm } from "./LookForm";
-import { LabelForm } from "./LabelForm";
+import { LookForm } from "./_components/LookForm";
+import { LabelForm } from "./_components/LabelForm";
 
 export const NoteForm = () => {
   const [isLoading, setIsLoading] = useState(false);

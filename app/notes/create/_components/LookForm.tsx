@@ -9,7 +9,7 @@ import {
 } from "@chakra-ui/react";
 import { FormikErrors, FormikTouched, getIn } from "formik";
 import { FormContainer } from "./FormContainer";
-import { ColorSelect } from "./ColorSelect";
+import { ColorSelect } from "./elements/ColorSelect";
 
 interface FormFieldsContainerProps {
   errors: FormikErrors<INote>;
