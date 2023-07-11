@@ -30,19 +30,6 @@ export const LookForm: React.FC<FormFieldsContainerProps> = ({
 
   return (
     <FormContainer title="Observe wine in your glass">
-      <FormControl isInvalid={!!colorError && colorTouched}>
-        <Flex
-          justifyContent="space-between"
-          flexDirection={{ base: "column", md: "row" }}
-          my={3}
-        >
-          <FormLabel htmlFor="text" color="brand.900">
-            Colour
-          </FormLabel>
-          <ColorSelect />
-        </Flex>
-        <FormErrorMessage>{colorError}</FormErrorMessage>
-      </FormControl>
       <FormControl
         isInvalid={
           !!getIn(errors, "appearance.intensity") &&
@@ -61,6 +48,19 @@ export const LookForm: React.FC<FormFieldsContainerProps> = ({
             options={["light", "medium", "pronounced"]}
           />
         </Flex>
+      </FormControl>
+      <FormControl isInvalid={!!colorError && colorTouched}>
+        <Flex
+          justifyContent="space-between"
+          flexDirection={{ base: "column", md: "row" }}
+          my={3}
+        >
+          <FormLabel htmlFor="text" color="brand.900">
+            Colour
+          </FormLabel>
+          <ColorSelect />
+        </Flex>
+        <FormErrorMessage>{colorError}</FormErrorMessage>
       </FormControl>
     </FormContainer>
   );

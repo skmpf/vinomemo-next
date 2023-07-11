@@ -10,6 +10,8 @@ import {
 } from "@/app/_modules/note";
 import { LookForm } from "./_components/LookForm";
 import { LabelForm } from "./_components/LabelForm";
+import { SmellForm } from "./_components/SmellForm";
+import { TasteForm } from "./_components/TasteForm";
 
 export const NoteForm = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -41,6 +43,8 @@ export const NoteForm = () => {
             </HStack>
             <LabelForm errors={errors} touched={touched} />
             <LookForm errors={errors} touched={touched} />
+            <SmellForm errors={errors} touched={touched} />
+            <TasteForm errors={errors} touched={touched} />
           </Form>
         )}
       </Formik>

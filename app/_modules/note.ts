@@ -12,28 +12,26 @@ export interface INote {
   };
   appearance?: {
     intensity?: string;
-    color?: {
-      main?: string;
-      variant?: string;
-    };
+    colour?: string;
+    variant?: string;
   };
   nose?: {
-    intensity?: number;
-    aromas?: string[];
+    intensity?: string;
+    aromas?: string;
   };
   palate?: {
-    sweetness?: number;
-    acidity?: number;
-    tannin?: number;
-    alcohol?: number;
-    body?: number;
-    intensity?: number;
-    flavors?: string[];
-    finish?: number;
+    sweetness?: string;
+    acidity?: string;
+    tannin?: string;
+    alcohol?: string;
+    body?: string;
+    intensity?: string;
+    flavours?: string;
+    finish?: string;
   };
-  conclusion?: {
+  conclusions?: {
+    quality?: string;
     comments?: string;
-    rating?: number;
   };
   creator: string;
 }
@@ -50,28 +48,26 @@ export const NoteFormInitialValues: INote = {
   },
   appearance: {
     intensity: "",
-    color: {
-      main: "",
-      variant: "",
-    },
+    colour: "",
+    variant: "",
   },
   nose: {
-    intensity: 0,
-    aromas: [],
+    intensity: "",
+    aromas: "",
   },
   palate: {
-    sweetness: 0,
-    acidity: 0,
-    tannin: 0,
-    alcohol: 0,
-    body: 0,
-    intensity: 0,
-    flavors: [],
-    finish: 0,
+    sweetness: "",
+    acidity: "",
+    tannin: "",
+    alcohol: "",
+    body: "",
+    intensity: "",
+    flavours: "",
+    finish: "",
   },
-  conclusion: {
+  conclusions: {
+    quality: "",
     comments: "",
-    rating: 0,
   },
   creator: "default",
 };
@@ -88,28 +84,26 @@ export const NoteFormValidationSchema = Yup.object().shape({
   }),
   appearance: Yup.object().shape({
     intensity: Yup.string(),
-    color: Yup.object().shape({
-      main: Yup.string(),
-      variant: Yup.string(),
-    }),
+    color: Yup.string(),
+    variant: Yup.string(),
   }),
   nose: Yup.object().shape({
-    intensity: Yup.number(),
-    aromas: Yup.array().of(Yup.string()),
+    intensity: Yup.string(),
+    aromas: Yup.string(),
   }),
   palate: Yup.object().shape({
-    sweetness: Yup.number(),
-    acidity: Yup.number(),
-    tannin: Yup.number(),
-    alcohol: Yup.number(),
-    body: Yup.number(),
-    intensity: Yup.number(),
-    flavors: Yup.array().of(Yup.string()),
-    finish: Yup.number(),
+    sweetness: Yup.string(),
+    acidity: Yup.string(),
+    tannin: Yup.string(),
+    alcohol: Yup.string(),
+    body: Yup.string(),
+    intensity: Yup.string(),
+    flavours: Yup.string(),
+    finish: Yup.string(),
   }),
-  conclusion: Yup.object().shape({
+  conclusions: Yup.object().shape({
+    quality: Yup.string(),
     comments: Yup.string(),
-    rating: Yup.number(),
   }),
   creator: Yup.string().required("Required"),
 });
