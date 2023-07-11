@@ -9,7 +9,7 @@ import {
 } from "@chakra-ui/react";
 import { FormikErrors, FormikTouched, getIn } from "formik";
 import { FormContainer } from "./FormContainer";
-import { ColorSelect } from "./elements/ColorSelect";
+import { ColorPicker } from "./elements/ColorPicker";
 import { ScaleRadio } from "./elements/ScaleRadio";
 
 interface FormFieldsContainerProps {
@@ -29,7 +29,7 @@ export const AppearanceForm: React.FC<FormFieldsContainerProps> = ({
     getIn(touched, "appearance.color.variants");
 
   return (
-    <FormContainer title="Observe wine in your glass">
+    <FormContainer title="Appearance">
       <FormControl
         isInvalid={
           !!getIn(errors, "appearance.intensity") &&
@@ -56,9 +56,9 @@ export const AppearanceForm: React.FC<FormFieldsContainerProps> = ({
           my={3}
         >
           <FormLabel htmlFor="text" color="brand.900">
-            Colour
+            Color
           </FormLabel>
-          <ColorSelect />
+          <ColorPicker />
         </Flex>
         <FormErrorMessage>{colorError}</FormErrorMessage>
       </FormControl>

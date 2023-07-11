@@ -22,7 +22,7 @@ export const PalateForm: React.FC<FormFieldsContainerProps> = ({
   touched,
 }) => {
   return (
-    <FormContainer title="Quantify the texture and indentify the flavors">
+    <FormContainer title="Palate">
       <FormControl
         isInvalid={
           !!getIn(errors, "palate.sweetness") &&
@@ -125,7 +125,7 @@ export const PalateForm: React.FC<FormFieldsContainerProps> = ({
           flexDirection={{ base: "column", md: "row" }}
         >
           <FormLabel htmlFor="text" color="brand.900">
-            Flavour intensity
+            Flavor intensity
           </FormLabel>
           <ScaleRadio
             name="palate.intensity"
@@ -135,8 +135,7 @@ export const PalateForm: React.FC<FormFieldsContainerProps> = ({
       </FormControl>
       <FormControl
         isInvalid={
-          !!getIn(errors, "palate.flavours") &&
-          getIn(touched, "palate.flavours")
+          !!getIn(errors, "palate.flavors") && getIn(touched, "palate.flavors")
         }
       >
         <Flex
@@ -145,20 +144,20 @@ export const PalateForm: React.FC<FormFieldsContainerProps> = ({
           my={3}
         >
           <FormLabel htmlFor="text" color="brand.900">
-            Flavour characteristics
+            Flavor characteristics
           </FormLabel>
           <Field
             as={Input}
             variant="flushed"
             id="name"
-            name="palate.flavours"
+            name="palate.flavors"
             type="text"
             focusBorderColor="gray.400"
             errorBorderColor="brand.900"
             width={{ base: "100%", md: "75%" }}
           />
         </Flex>
-        <FormErrorMessage>{getIn(errors, "palate.flavours")}</FormErrorMessage>
+        <FormErrorMessage>{getIn(errors, "palate.flavors")}</FormErrorMessage>
       </FormControl>
       <FormControl
         isInvalid={

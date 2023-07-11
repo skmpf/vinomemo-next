@@ -4,9 +4,9 @@ import { useState } from "react";
 import { Button, Flex, Text, VStack } from "@chakra-ui/react";
 import { useField } from "formik";
 
-const COLORS = [
+const COLORS_OPTIONS = [
   {
-    main: "white",
+    color: "white",
     hex: "#F8EECA",
     variants: [
       { name: "lemon", hex: "#F8EECA" },
@@ -15,7 +15,7 @@ const COLORS = [
     ],
   },
   {
-    main: "rosé",
+    color: "rosé",
     hex: "#F3CACA",
     variants: [
       { name: "pink", hex: "#F4C9CB" },
@@ -24,7 +24,7 @@ const COLORS = [
     ],
   },
   {
-    main: "red",
+    color: "red",
     hex: "#910235",
     variants: [
       { name: "purple", hex: "#8E0051" },
@@ -42,7 +42,7 @@ type SelectButtonProps = {
   onClick: (color: string) => void;
 };
 
-type MainSelectProps = {
+type ColorSelectProps = {
   name: string;
   type: string;
   selectedColor: string;
@@ -88,13 +88,13 @@ const SelectButton: React.FC<SelectButtonProps> = ({
   );
 };
 
-const MainSelect: React.FC<MainSelectProps> = ({
+const ColorSelect: React.FC<ColorSelectProps> = ({
   selectedColor,
   onClick: callback,
   ...props
 }) => {
   const [, , helpers] = useField(props.name);
-  const [, , variantHelpers] = useField("appearance.color.variant");
+  const [, , variantHelpers] = useField("appearance.variant");
 
   const handleClick = (color: string) => {
     helpers.setValue(color);
@@ -104,10 +104,10 @@ const MainSelect: React.FC<MainSelectProps> = ({
 
   return (
     <>
-      {COLORS.map((color) => (
+      {COLORS_OPTIONS.map((color) => (
         <SelectButton
-          key={color.main}
-          color={color.main}
+          key={color.color}
+          color={color.color}
           backgroundColor={color.hex}
           selected={selectedColor}
           onClick={handleClick}
@@ -124,55 +124,55 @@ const VariantSelect: React.FC<VariantSelectProps> = ({
   ...props
 }) => {
   const [, , helpers] = useField(props.name);
-  const [, , mainHelpers] = useField("appearance.color.main");
+  const [, , colorHelpers] = useField("appearance.color");
 
   const handleClick = (color: string) => {
     helpers.setValue(color);
-    mainHelpers.setValue(selectedColor);
+    colorHelpers.setValue(selectedColor);
     callback(color);
   };
 
   return (
     <>
-      {COLORS.find((option) => option.main === selectedColor)?.variants.map(
-        (variant) => (
-          <SelectButton
-            key={variant.name}
-            color={variant.name}
-            backgroundColor={variant.hex}
-            selected={selectedVariant}
-            onClick={handleClick}
-          />
-        )
-      )}
+      {COLORS_OPTIONS.find(
+        (option) => option.color === selectedColor
+      )?.variants.map((variant) => (
+        <SelectButton
+          key={variant.name}
+          color={variant.name}
+          backgroundColor={variant.hex}
+          selected={selectedVariant}
+          onClick={handleClick}
+        />
+      ))}
     </>
   );
 };
 
-export const ColorSelect = ({ userColor = "white", userVariant = "" }) => {
-  const [selectedMain, setSelectedMain] = useState(userColor);
+export const ColorPicker = ({ userColor = "white", userVariant = "" }) => {
+  const [selectedColor, setSelectedColor] = useState(userColor);
   const [selectedVariant, setSelectedVariant] = useState(userVariant);
 
   const handleColorClick = (color: string) => {
-    setSelectedMain(color);
+    setSelectedColor(color);
     setSelectedVariant("");
   };
 
   return (
     <VStack width={{ base: "100%", md: "75%" }}>
       <Flex width="100%" justifyContent="space-between" alignItems="center">
-        <MainSelect
-          name="appearance.color.main"
+        <ColorSelect
+          name="appearance.color"
           type="text"
-          selectedColor={selectedMain}
+          selectedColor={selectedColor}
           onClick={handleColorClick}
         />
       </Flex>
       <Flex width="100%" justifyContent="space-between" alignItems="center">
         <VariantSelect
-          name="appearance.color.variant"
+          name="appearance.variant"
           type="text"
-          selectedColor={selectedMain}
+          selectedColor={selectedColor}
           selectedVariant={selectedVariant}
           onClick={setSelectedVariant}
         />

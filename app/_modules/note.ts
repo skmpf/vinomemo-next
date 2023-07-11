@@ -12,7 +12,7 @@ export interface INote {
   };
   appearance?: {
     intensity?: string;
-    colour?: string;
+    color?: string;
     variant?: string;
   };
   nose?: {
@@ -26,7 +26,7 @@ export interface INote {
     alcohol?: string;
     body?: string;
     intensity?: string;
-    flavours?: string;
+    flavors?: string;
     finish?: string;
   };
   conclusions?: {
@@ -48,7 +48,7 @@ export const NoteFormInitialValues: INote = {
   },
   appearance: {
     intensity: "",
-    colour: "",
+    color: "",
     variant: "",
   },
   nose: {
@@ -62,7 +62,7 @@ export const NoteFormInitialValues: INote = {
     alcohol: "",
     body: "",
     intensity: "",
-    flavours: "",
+    flavors: "",
     finish: "",
   },
   conclusions: {
@@ -98,7 +98,7 @@ export const NoteFormValidationSchema = Yup.object().shape({
     alcohol: Yup.string(),
     body: Yup.string(),
     intensity: Yup.string(),
-    flavours: Yup.string(),
+    flavors: Yup.string(),
     finish: Yup.string(),
   }),
   conclusions: Yup.object().shape({

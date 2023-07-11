@@ -12,12 +12,13 @@ import { AppearanceForm } from "./_components/AppearanceForm";
 import { InformationForm } from "./_components/InformationForm";
 import { NoseForm } from "./_components/NoseForm";
 import { PalateForm } from "./_components/PalateForm";
+import { ConclusionsForm } from "./_components/ConclusionsForm";
 
 export const NoteForm = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = (values: INote) => {
-    alert(JSON.stringify(values, null, 2));
+    console.log("🚀 ~ file: NoteForm.tsx:21 ~ handleSubmit ~ values:", values);
   };
 
   return (
@@ -45,6 +46,7 @@ export const NoteForm = () => {
             <AppearanceForm errors={errors} touched={touched} />
             <NoseForm errors={errors} touched={touched} />
             <PalateForm errors={errors} touched={touched} />
+            <ConclusionsForm errors={errors} touched={touched} />
           </Form>
         )}
       </Formik>

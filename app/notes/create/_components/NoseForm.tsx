@@ -22,7 +22,7 @@ export const NoseForm: React.FC<FormFieldsContainerProps> = ({
   touched,
 }) => {
   return (
-    <FormContainer title="Identify five unique aromas in your wine">
+    <FormContainer title="Nose">
       <FormControl
         isInvalid={
           !!getIn(errors, "nose.intensity") && getIn(touched, "nose.intensity")

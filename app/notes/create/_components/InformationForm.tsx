@@ -21,7 +21,7 @@ export const InformationForm: React.FC<FormFieldsContainerProps> = ({
   touched,
 }) => {
   return (
-    <FormContainer title="From the label">
+    <FormContainer title="Information">
       <FormControl
         isInvalid={!!errors.information?.name && touched.information?.name}
       >
@@ -173,7 +173,7 @@ export const InformationForm: React.FC<FormFieldsContainerProps> = ({
             variant="flushed"
             id="alcohol"
             name="information.alcohol"
-            type="text"
+            type="number"
             focusBorderColor="gray.400"
             width={{ base: "100%", md: "75%" }}
           />
