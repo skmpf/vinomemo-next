@@ -50,6 +50,9 @@ export const ConclusionsForm: React.FC<FormFieldsContainerProps> = ({
             <option value="outstanding">Outstanding</option>
           </Field>
         </Flex>
+        <FormErrorMessage>
+          {getIn(errors, "conclusions.quality")}
+        </FormErrorMessage>
       </FormControl>
       <FormControl
         isInvalid={

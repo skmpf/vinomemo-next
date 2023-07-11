@@ -47,6 +47,9 @@ export const AppearanceForm: React.FC<FormFieldsContainerProps> = ({
             name="appearance.intensity"
             options={["light", "medium", "pronounced"]}
           />
+          <FormErrorMessage>
+            {getIn(errors, "appearance.intensity")}
+          </FormErrorMessage>
         </Flex>
       </FormControl>
       <FormControl isInvalid={!!colorError && colorTouched}>

@@ -67,6 +67,7 @@ export const InformationForm: React.FC<FormFieldsContainerProps> = ({
             width={{ base: "100%", md: "75%" }}
           />
         </Flex>
+        <FormErrorMessage>{errors.information?.country}</FormErrorMessage>
       </FormControl>
       <FormControl
         isInvalid={!!errors.information?.region && touched.information?.region}
@@ -88,6 +89,7 @@ export const InformationForm: React.FC<FormFieldsContainerProps> = ({
             width={{ base: "100%", md: "75%" }}
           />
         </Flex>
+        <FormErrorMessage>{errors.information?.region}</FormErrorMessage>
       </FormControl>
       <FormControl
         isInvalid={!!errors.information?.grapes && touched.information?.grapes}
@@ -109,6 +111,7 @@ export const InformationForm: React.FC<FormFieldsContainerProps> = ({
             width={{ base: "100%", md: "75%" }}
           />
         </Flex>
+        <FormErrorMessage>{errors.information?.grapes}</FormErrorMessage>
       </FormControl>
       <FormControl
         isInvalid={
@@ -132,6 +135,7 @@ export const InformationForm: React.FC<FormFieldsContainerProps> = ({
             width={{ base: "100%", md: "75%" }}
           />
         </Flex>
+        <FormErrorMessage>{errors.information?.producer}</FormErrorMessage>
       </FormControl>
       <FormControl
         isInvalid={
@@ -155,6 +159,7 @@ export const InformationForm: React.FC<FormFieldsContainerProps> = ({
             width={{ base: "100%", md: "75%" }}
           />
         </Flex>
+        <FormErrorMessage>{errors.information?.vintage}</FormErrorMessage>
       </FormControl>
       <FormControl
         isInvalid={
@@ -178,6 +183,7 @@ export const InformationForm: React.FC<FormFieldsContainerProps> = ({
             width={{ base: "100%", md: "75%" }}
           />
         </Flex>
+        <FormErrorMessage>{errors.information?.alcohol}</FormErrorMessage>
       </FormControl>
     </FormContainer>
   );

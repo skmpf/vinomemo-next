@@ -40,6 +40,7 @@ export const NoseForm: React.FC<FormFieldsContainerProps> = ({
             options={["light", "medium", "pronounced"]}
           />
         </Flex>
+        <FormErrorMessage>{getIn(errors, "nose.intensity")}</FormErrorMessage>
       </FormControl>
       <FormControl
         isInvalid={

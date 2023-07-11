@@ -41,6 +41,7 @@ export const PalateForm: React.FC<FormFieldsContainerProps> = ({
             options={["dry", "off-dry", "medium", "sweet"]}
           />
         </Flex>
+        <FormErrorMessage>{getIn(errors, "palate.sweetness")}</FormErrorMessage>
       </FormControl>
       <FormControl
         isInvalid={
@@ -59,6 +60,7 @@ export const PalateForm: React.FC<FormFieldsContainerProps> = ({
             options={["low", "medium", "high"]}
           />
         </Flex>
+        <FormErrorMessage>{getIn(errors, "palate.acidity")}</FormErrorMessage>
       </FormControl>
       <FormControl
         isInvalid={
@@ -77,6 +79,7 @@ export const PalateForm: React.FC<FormFieldsContainerProps> = ({
             options={["low", "medium", "high"]}
           />
         </Flex>
+        <FormErrorMessage>{getIn(errors, "palate.tannin")}</FormErrorMessage>
       </FormControl>
       <FormControl
         isInvalid={
@@ -95,6 +98,7 @@ export const PalateForm: React.FC<FormFieldsContainerProps> = ({
             options={["low", "medium", "high"]}
           />
         </Flex>
+        <FormErrorMessage>{getIn(errors, "palate.alcohol")}</FormErrorMessage>
       </FormControl>
       <FormControl
         isInvalid={
@@ -113,6 +117,7 @@ export const PalateForm: React.FC<FormFieldsContainerProps> = ({
             options={["light", "medium", "full"]}
           />
         </Flex>
+        <FormErrorMessage>{getIn(errors, "palate.body")}</FormErrorMessage>
       </FormControl>
       <FormControl
         isInvalid={
@@ -132,6 +137,7 @@ export const PalateForm: React.FC<FormFieldsContainerProps> = ({
             options={["light", "medium", "pronounced"]}
           />
         </Flex>
+        <FormErrorMessage>{getIn(errors, "palate.intensity")}</FormErrorMessage>
       </FormControl>
       <FormControl
         isInvalid={
@@ -176,6 +182,7 @@ export const PalateForm: React.FC<FormFieldsContainerProps> = ({
             options={["short", "medium", "long"]}
           />
         </Flex>
+        <FormErrorMessage>{getIn(errors, "palate.finish")}</FormErrorMessage>
       </FormControl>
     </FormContainer>
   );
