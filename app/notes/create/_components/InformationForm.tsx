@@ -7,6 +7,7 @@ import {
   FormErrorMessage,
   FormLabel,
   Input,
+  Select,
 } from "@chakra-ui/react";
 import { Field, FormikErrors, FormikTouched } from "formik";
 import { FormContainer } from "./FormContainer";
@@ -157,6 +158,7 @@ export const InformationForm: React.FC<FormFieldsContainerProps> = ({
             type="number"
             focusBorderColor="gray.400"
             width={{ base: "100%", md: "75%" }}
+            placeholder=""
           />
         </Flex>
         <FormErrorMessage>{errors.information?.vintage}</FormErrorMessage>
@@ -174,14 +176,21 @@ export const InformationForm: React.FC<FormFieldsContainerProps> = ({
             ABV
           </FormLabel>
           <Field
-            as={Input}
-            variant="flushed"
-            id="alcohol"
+            as={Select}
             name="information.alcohol"
-            type="number"
+            placeholder="Select an option"
             focusBorderColor="gray.400"
             width={{ base: "100%", md: "75%" }}
-          />
+          >
+            {Array.from(Array(45).keys()).map((i) => {
+              const value = (i * 0.5).toFixed(1);
+              return (
+                <option key={i} value={value}>
+                  {value}
+                </option>
+              );
+            })}
+          </Field>
         </Flex>
         <FormErrorMessage>{errors.information?.alcohol}</FormErrorMessage>
       </FormControl>

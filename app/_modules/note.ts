@@ -7,8 +7,8 @@ export interface INote {
     region?: string;
     grapes?: string;
     producer?: string;
-    vintage?: number;
-    alcohol?: number;
+    vintage?: number | "";
+    alcohol?: number | "";
   };
   appearance?: {
     intensity?: string;
@@ -42,8 +42,8 @@ export const NoteFormInitialValues: INote = {
     region: "",
     grapes: "",
     producer: "",
-    vintage: undefined,
-    alcohol: undefined,
+    vintage: "",
+    alcohol: "",
   },
   appearance: {
     intensity: "",

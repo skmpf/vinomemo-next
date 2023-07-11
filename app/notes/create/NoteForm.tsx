@@ -18,7 +18,14 @@ export const NoteForm = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = (values: INote) => {
-    console.log("🚀 ~ file: NoteForm.tsx:21 ~ handleSubmit ~ values:", values);
+    if (!isLoading) {
+      setIsLoading(true);
+      console.log(
+        "🚀 ~ file: NoteForm.tsx:23 ~ handleSubmit ~ values:",
+        values
+      );
+      setIsLoading(false);
+    }
   };
 
   return (
