@@ -1,13 +1,16 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { Button, Flex, HStack, Link, Spinner } from "@chakra-ui/react";
 import { Form, Formik } from "formik";
+import { getCookie } from "cookies-next";
 import {
   INote,
   NoteFormInitialValues,
   NoteFormValidationSchema,
 } from "@/app/_modules/note";
+import { VINOMEMO_API_URL } from "@/app/_utils/authentication";
 import { AppearanceForm } from "./_components/AppearanceForm";
 import { InformationForm } from "./_components/InformationForm";
 import { NoseForm } from "./_components/NoseForm";
@@ -16,14 +19,23 @@ import { ConclusionsForm } from "./_components/ConclusionsForm";
 
 export const NoteForm = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
 
-  const handleSubmit = (values: INote) => {
+  const handleSubmit = async (values: INote) => {
     if (!isLoading) {
       setIsLoading(true);
-      console.log(
-        "🚀 ~ file: NoteForm.tsx:23 ~ handleSubmit ~ values:",
-        values
-      );
+      const token = getCookie("jwt");
+      const response = await fetch(`${VINOMEMO_API_URL}/notes`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(values),
+      });
+      if (response.ok) {
+        router.push("/notes");
+      }
       setIsLoading(false);
     }
   };

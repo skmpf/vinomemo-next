@@ -7,8 +7,8 @@ export interface INote {
     region?: string;
     grapes?: string;
     producer?: string;
-    vintage?: number | "";
-    alcohol?: number | "";
+    vintage?: number;
+    alcohol?: number;
   };
   appearance?: {
     intensity?: string;
@@ -42,8 +42,8 @@ export const NoteFormInitialValues: INote = {
     region: "",
     grapes: "",
     producer: "",
-    vintage: "",
-    alcohol: "",
+    vintage: undefined,
+    alcohol: undefined,
   },
   appearance: {
     intensity: "",
@@ -88,11 +88,12 @@ export const NoteFormValidationSchema = Yup.object().shape({
   appearance: Yup.object().shape({
     intensity: Yup.string()
       .notRequired()
-      .oneOf(["light", "medium", "pronounced"]),
-    color: Yup.string().notRequired().oneOf(["red", "white", "rosé"]),
+      .oneOf(["", "light", "medium", "pronounced"]),
+    color: Yup.string().notRequired().oneOf(["", "red", "white", "rosé"]),
     variant: Yup.string()
       .notRequired()
       .oneOf([
+        "",
         "lemon",
         "amber",
         "gold",
@@ -109,27 +110,27 @@ export const NoteFormValidationSchema = Yup.object().shape({
     intensity: Yup.string()
       .max(100)
       .notRequired()
-      .oneOf(["light", "medium", "pronounced"]),
+      .oneOf(["", "light", "medium", "pronounced"]),
     aromas: Yup.string().max(200, "Too long").notRequired(),
   }),
   palate: Yup.object().shape({
     sweetness: Yup.string()
       .notRequired()
-      .oneOf(["dry", "off-dry", "medium", "sweet"]),
-    acidity: Yup.string().notRequired().oneOf(["low", "medium", "high"]),
-    tannin: Yup.string().notRequired().oneOf(["low", "medium", "high"]),
-    alcohol: Yup.string().notRequired().oneOf(["low", "medium", "high"]),
-    body: Yup.string().notRequired().oneOf(["light", "medium", "full"]),
+      .oneOf(["", "dry", "off-dry", "medium", "sweet"]),
+    acidity: Yup.string().notRequired().oneOf(["", "low", "medium", "high"]),
+    tannin: Yup.string().notRequired().oneOf(["", "low", "medium", "high"]),
+    alcohol: Yup.string().notRequired().oneOf(["", "low", "medium", "high"]),
+    body: Yup.string().notRequired().oneOf(["", "light", "medium", "full"]),
     intensity: Yup.string()
       .notRequired()
-      .oneOf(["light", "medium", "pronounced"]),
+      .oneOf(["", "light", "medium", "pronounced"]),
     flavors: Yup.string().max(200, "Too long").notRequired(),
-    finish: Yup.string().notRequired().oneOf(["short", "medium", "long"]),
+    finish: Yup.string().notRequired().oneOf(["", "short", "medium", "long"]),
   }),
   conclusion: Yup.object().shape({
     rating: Yup.string()
       .notRequired()
-      .oneOf(["poor", "acceptable", "good", "very good", "outstanding"]),
+      .oneOf(["", "poor", "acceptable", "good", "very good", "outstanding"]),
     comments: Yup.string().max(500, "Too long").notRequired(),
   }),
 });

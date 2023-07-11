@@ -7,6 +7,8 @@ import {
   FormErrorMessage,
   FormLabel,
   Input,
+  NumberInput,
+  NumberInputField,
   Select,
 } from "@chakra-ui/react";
 import { Field, FormikErrors, FormikTouched } from "formik";
@@ -150,16 +152,17 @@ export const InformationForm: React.FC<FormFieldsContainerProps> = ({
           <FormLabel htmlFor="text" color="brand.900">
             Vintage
           </FormLabel>
-          <Field
-            as={Input}
+          <NumberInput
             variant="flushed"
-            id="vintage"
-            name="information.vintage"
-            type="number"
             focusBorderColor="gray.400"
             width={{ base: "100%", md: "75%" }}
-            placeholder=""
-          />
+          >
+            <Field
+              as={NumberInputField}
+              id="vintage"
+              name="information.vintage"
+            />
+          </NumberInput>
         </Flex>
         <FormErrorMessage>{errors.information?.vintage}</FormErrorMessage>
       </FormControl>
