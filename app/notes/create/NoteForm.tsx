@@ -8,10 +8,10 @@ import {
   NoteFormInitialValues,
   NoteFormValidationSchema,
 } from "@/app/_modules/note";
-import { LookForm } from "./_components/LookForm";
-import { LabelForm } from "./_components/LabelForm";
-import { SmellForm } from "./_components/SmellForm";
-import { TasteForm } from "./_components/TasteForm";
+import { AppearanceForm } from "./_components/AppearanceForm";
+import { InformationForm } from "./_components/InformationForm";
+import { NoseForm } from "./_components/NoseForm";
+import { PalateForm } from "./_components/PalateForm";
 
 export const NoteForm = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -41,10 +41,10 @@ export const NoteForm = () => {
                 Close
               </Button>
             </HStack>
-            <LabelForm errors={errors} touched={touched} />
-            <LookForm errors={errors} touched={touched} />
-            <SmellForm errors={errors} touched={touched} />
-            <TasteForm errors={errors} touched={touched} />
+            <InformationForm errors={errors} touched={touched} />
+            <AppearanceForm errors={errors} touched={touched} />
+            <NoseForm errors={errors} touched={touched} />
+            <PalateForm errors={errors} touched={touched} />
           </Form>
         )}
       </Formik>

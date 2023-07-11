@@ -6,10 +6,10 @@ import {
   FormControl,
   FormErrorMessage,
   FormLabel,
-  Input,
 } from "@chakra-ui/react";
-import { Field, FormikErrors, FormikTouched, getIn } from "formik";
+import { FormikErrors, FormikTouched, getIn } from "formik";
 import { FormContainer } from "./FormContainer";
+import { ColorSelect } from "./elements/ColorSelect";
 import { ScaleRadio } from "./elements/ScaleRadio";
 
 interface FormFieldsContainerProps {
@@ -17,15 +17,23 @@ interface FormFieldsContainerProps {
   touched: FormikTouched<INote>;
 }
 
-export const SmellForm: React.FC<FormFieldsContainerProps> = ({
+export const AppearanceForm: React.FC<FormFieldsContainerProps> = ({
   errors,
   touched,
 }) => {
+  const colorError =
+    getIn(errors, "appearance.color.main") &&
+    getIn(errors, "appearance.color.variants");
+  const colorTouched =
+    getIn(touched, "appearance.color.main") &&
+    getIn(touched, "appearance.color.variants");
+
   return (
-    <FormContainer title="Identify five unique aromas in your wine">
+    <FormContainer title="Observe wine in your glass">
       <FormControl
         isInvalid={
-          !!getIn(errors, "nose.intensity") && getIn(touched, "nose.intensity")
+          !!getIn(errors, "appearance.intensity") &&
+          getIn(touched, "appearance.intensity")
         }
       >
         <Flex
@@ -36,36 +44,23 @@ export const SmellForm: React.FC<FormFieldsContainerProps> = ({
             Intensity
           </FormLabel>
           <ScaleRadio
-            name="nose.intensity"
+            name="appearance.intensity"
             options={["light", "medium", "pronounced"]}
           />
         </Flex>
       </FormControl>
-      <FormControl
-        isInvalid={
-          !!getIn(errors, "nose.aromas") && getIn(touched, "nose.aromas")
-        }
-      >
+      <FormControl isInvalid={!!colorError && colorTouched}>
         <Flex
           justifyContent="space-between"
           flexDirection={{ base: "column", md: "row" }}
           my={3}
         >
           <FormLabel htmlFor="text" color="brand.900">
-            Aroma characteristics
+            Colour
           </FormLabel>
-          <Field
-            as={Input}
-            variant="flushed"
-            id="name"
-            name="nose.aromas"
-            type="text"
-            focusBorderColor="gray.400"
-            errorBorderColor="brand.900"
-            width={{ base: "100%", md: "75%" }}
-          />
+          <ColorSelect />
         </Flex>
-        <FormErrorMessage>{getIn(errors, "nose.aromas")}</FormErrorMessage>
+        <FormErrorMessage>{colorError}</FormErrorMessage>
       </FormControl>
     </FormContainer>
   );

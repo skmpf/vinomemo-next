@@ -8,46 +8,161 @@ import {
   FormLabel,
   Input,
 } from "@chakra-ui/react";
-import { Field, FormikErrors, FormikTouched } from "formik";
+import { Field, FormikErrors, FormikTouched, getIn } from "formik";
 import { FormContainer } from "./FormContainer";
+import { ScaleRadio } from "./elements/ScaleRadio";
 
 interface FormFieldsContainerProps {
   errors: FormikErrors<INote>;
   touched: FormikTouched<INote>;
 }
 
-export const LabelForm: React.FC<FormFieldsContainerProps> = ({
+export const PalateForm: React.FC<FormFieldsContainerProps> = ({
   errors,
   touched,
 }) => {
   return (
-    <FormContainer title="From the label">
+    <FormContainer title="Quantify the texture and indentify the flavors">
       <FormControl
-        isInvalid={!!errors.information?.name && touched.information?.name}
+        isInvalid={
+          !!getIn(errors, "palate.sweetness") &&
+          getIn(touched, "palate.sweetness")
+        }
       >
         <Flex
           justifyContent="space-between"
           flexDirection={{ base: "column", md: "row" }}
         >
           <FormLabel htmlFor="text" color="brand.900">
-            Name
+            Sweetness
+          </FormLabel>
+          <ScaleRadio
+            name="palate.sweetness"
+            options={["dry", "off-dry", "medium", "sweet"]}
+          />
+        </Flex>
+      </FormControl>
+      <FormControl
+        isInvalid={
+          !!getIn(errors, "palate.acidity") && getIn(touched, "palate.acidity")
+        }
+      >
+        <Flex
+          justifyContent="space-between"
+          flexDirection={{ base: "column", md: "row" }}
+        >
+          <FormLabel htmlFor="text" color="brand.900">
+            Acidity
+          </FormLabel>
+          <ScaleRadio
+            name="palate.acidity"
+            options={["low", "medium", "high"]}
+          />
+        </Flex>
+      </FormControl>
+      <FormControl
+        isInvalid={
+          !!getIn(errors, "palate.tannin") && getIn(touched, "palate.tannin")
+        }
+      >
+        <Flex
+          justifyContent="space-between"
+          flexDirection={{ base: "column", md: "row" }}
+        >
+          <FormLabel htmlFor="text" color="brand.900">
+            Tannin
+          </FormLabel>
+          <ScaleRadio
+            name="palate.tannin"
+            options={["low", "medium", "high"]}
+          />
+        </Flex>
+      </FormControl>
+      <FormControl
+        isInvalid={
+          !!getIn(errors, "palate.alcohol") && getIn(touched, "palate.alcohol")
+        }
+      >
+        <Flex
+          justifyContent="space-between"
+          flexDirection={{ base: "column", md: "row" }}
+        >
+          <FormLabel htmlFor="text" color="brand.900">
+            Alcohol
+          </FormLabel>
+          <ScaleRadio
+            name="palate.alcohol"
+            options={["low", "medium", "high"]}
+          />
+        </Flex>
+      </FormControl>
+      <FormControl
+        isInvalid={
+          !!getIn(errors, "palate.body") && getIn(touched, "palate.body")
+        }
+      >
+        <Flex
+          justifyContent="space-between"
+          flexDirection={{ base: "column", md: "row" }}
+        >
+          <FormLabel htmlFor="text" color="brand.900">
+            Body
+          </FormLabel>
+          <ScaleRadio
+            name="palate.body"
+            options={["light", "medium", "full"]}
+          />
+        </Flex>
+      </FormControl>
+      <FormControl
+        isInvalid={
+          !!getIn(errors, "palate.intensity") &&
+          getIn(touched, "palate.intensity")
+        }
+      >
+        <Flex
+          justifyContent="space-between"
+          flexDirection={{ base: "column", md: "row" }}
+        >
+          <FormLabel htmlFor="text" color="brand.900">
+            Flavour intensity
+          </FormLabel>
+          <ScaleRadio
+            name="palate.intensity"
+            options={["light", "medium", "pronounced"]}
+          />
+        </Flex>
+      </FormControl>
+      <FormControl
+        isInvalid={
+          !!getIn(errors, "palate.flavours") &&
+          getIn(touched, "palate.flavours")
+        }
+      >
+        <Flex
+          justifyContent="space-between"
+          flexDirection={{ base: "column", md: "row" }}
+          my={3}
+        >
+          <FormLabel htmlFor="text" color="brand.900">
+            Flavour characteristics
           </FormLabel>
           <Field
             as={Input}
             variant="flushed"
             id="name"
-            name="information.name"
+            name="palate.flavours"
             type="text"
             focusBorderColor="gray.400"
             errorBorderColor="brand.900"
             width={{ base: "100%", md: "75%" }}
           />
         </Flex>
-        <FormErrorMessage>{errors.information?.name}</FormErrorMessage>
+        <FormErrorMessage>{getIn(errors, "palate.flavours")}</FormErrorMessage>
       </FormControl>
       <FormControl
         isInvalid={
-          !!errors.information?.country && touched.information?.country
+          !!getIn(errors, "palate.finish") && getIn(touched, "palate.finish")
         }
       >
         <Flex
@@ -55,127 +170,11 @@ export const LabelForm: React.FC<FormFieldsContainerProps> = ({
           flexDirection={{ base: "column", md: "row" }}
         >
           <FormLabel htmlFor="text" color="brand.900">
-            Country
+            Finish
           </FormLabel>
-          <Field
-            as={Input}
-            variant="flushed"
-            id="country"
-            name="information.country"
-            type="text"
-            focusBorderColor="gray.400"
-            width={{ base: "100%", md: "75%" }}
-          />
-        </Flex>
-      </FormControl>
-      <FormControl
-        isInvalid={!!errors.information?.region && touched.information?.region}
-      >
-        <Flex
-          justifyContent="space-between"
-          flexDirection={{ base: "column", md: "row" }}
-        >
-          <FormLabel htmlFor="text" color="brand.900">
-            Region
-          </FormLabel>
-          <Field
-            as={Input}
-            variant="flushed"
-            id="region"
-            name="information.region"
-            type="text"
-            focusBorderColor="gray.400"
-            width={{ base: "100%", md: "75%" }}
-          />
-        </Flex>
-      </FormControl>
-      <FormControl
-        isInvalid={!!errors.information?.grapes && touched.information?.grapes}
-      >
-        <Flex
-          justifyContent="space-between"
-          flexDirection={{ base: "column", md: "row" }}
-        >
-          <FormLabel htmlFor="text" color="brand.900">
-            Grapes
-          </FormLabel>
-          <Field
-            as={Input}
-            variant="flushed"
-            id="grapes"
-            name="information.grapes"
-            type="text"
-            focusBorderColor="gray.400"
-            width={{ base: "100%", md: "75%" }}
-          />
-        </Flex>
-      </FormControl>
-      <FormControl
-        isInvalid={
-          !!errors.information?.producer && touched.information?.producer
-        }
-      >
-        <Flex
-          justifyContent="space-between"
-          flexDirection={{ base: "column", md: "row" }}
-        >
-          <FormLabel htmlFor="text" color="brand.900">
-            Producer
-          </FormLabel>
-          <Field
-            as={Input}
-            variant="flushed"
-            id="producer"
-            name="information.producer"
-            type="text"
-            focusBorderColor="gray.400"
-            width={{ base: "100%", md: "75%" }}
-          />
-        </Flex>
-      </FormControl>
-      <FormControl
-        isInvalid={
-          !!errors.information?.vintage && touched.information?.vintage
-        }
-      >
-        <Flex
-          justifyContent="space-between"
-          flexDirection={{ base: "column", md: "row" }}
-        >
-          <FormLabel htmlFor="text" color="brand.900">
-            Vintage
-          </FormLabel>
-          <Field
-            as={Input}
-            variant="flushed"
-            id="vintage"
-            name="information.vintage"
-            type="number"
-            focusBorderColor="gray.400"
-            width={{ base: "100%", md: "75%" }}
-          />
-        </Flex>
-      </FormControl>
-      <FormControl
-        isInvalid={
-          !!errors.information?.alcohol && touched.information?.alcohol
-        }
-      >
-        <Flex
-          justifyContent="space-between"
-          flexDirection={{ base: "column", md: "row" }}
-        >
-          <FormLabel htmlFor="text" color="brand.900">
-            ABV
-          </FormLabel>
-          <Field
-            as={Input}
-            variant="flushed"
-            id="alcohol"
-            name="information.alcohol"
-            type="text"
-            focusBorderColor="gray.400"
-            width={{ base: "100%", md: "75%" }}
+          <ScaleRadio
+            name="palate.finish"
+            options={["short", "medium", "long"]}
           />
         </Flex>
       </FormControl>
