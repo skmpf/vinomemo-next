@@ -10,20 +10,20 @@ export const TopBarButtons = () => {
     <HStack spacing={{ base: 2, md: 4 }}>
       {pathname === "/" && (
         <>
-          <Button as={Link} href="/login" size={{ base: "md", md: "lg" }}>
+          <Button as={Link} href="/login">
             Login
           </Button>
-          <Button as={Link} href="/signup" size={{ base: "md", md: "lg" }}>
+          <Button as={Link} href="/signup">
             Signup
           </Button>
         </>
       )}
       {pathname.includes("/notes") && (
         <>
-          {/* <Button as={Link} href="/profile" size={{ base: "md", md: "lg" }}>
+          {/* <Button as={Link} href="/profile" >
               Profile
             </Button> */}
-          <Button as={Link} href="/logout" size={{ base: "md", md: "lg" }}>
+          <Button as={Link} href="/logout">
             Logout
           </Button>
         </>
