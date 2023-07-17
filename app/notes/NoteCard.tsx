@@ -1,31 +1,36 @@
 "use client";
 
 import Link from "next/link";
-import { Card, CardBody, HStack, Icon, Text, VStack } from "@chakra-ui/react";
+import { Card, CardBody, HStack, Icon, Text } from "@chakra-ui/react";
 import { StarIcon } from "@chakra-ui/icons";
 import { MdLocationOn } from "react-icons/md";
+import { INote } from "../_modules/note";
 
-export const NoteCard = () => {
+type NoteCardProps = {
+  note: INote;
+};
+
+export const NoteCard: React.FC<NoteCardProps> = ({ note }) => {
   return (
-    <Card as={Link} href="/notes/1">
+    <Card as={Link} href={`/notes/${note._id}`}>
       <CardBody>
         <Text textTransform="uppercase" fontWeight={700} color="black">
-          Montagne Saint Emilion
+          {note.information.name}
         </Text>
         <HStack>
           <Icon as={MdLocationOn} color="brand.900" />
           <Text fontSize="sm" color="gray.600">
-            Saint-Emilion, France
+            {note.information.region || "-"}
           </Text>
         </HStack>
         <HStack>
           <Icon as={StarIcon} color="brand.900" />
           <Text fontSize="sm" color="gray.600">
-            Very good
+            {note.conclusions?.quality || "-"}
           </Text>
         </HStack>
         <Text fontSize="sm" color="gray.600">
-          Added on 19/05/2023
+          Added on {new Date(note.createdAt!).toLocaleString()}
         </Text>
       </CardBody>
     </Card>

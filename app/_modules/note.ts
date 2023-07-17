@@ -33,6 +33,8 @@ export interface INote {
     quality?: string;
     comments?: string;
   };
+  _id?: string;
+  createdAt?: string;
 }
 
 export const NoteFormInitialValues: INote = {
