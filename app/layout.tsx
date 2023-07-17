@@ -1,4 +1,3 @@
-import "./globals.css";
 import { TopBar } from "./_components/Layout/elements/TopBar";
 import { Providers } from "./providers";
 

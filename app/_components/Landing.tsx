@@ -14,7 +14,7 @@ export const Landing = () => {
       flexDirection="column"
       justifyContent="space-between"
     >
-      <Flex flex={1} direction="column" justifyContent="center">
+      <Flex flex={1} direction="column" justifyContent="center" mt={12}>
         <Heading
           as="h1"
           size={{ base: "2xl", md: "3xl" }}
@@ -36,13 +36,19 @@ export const Landing = () => {
       </Flex>
       <Flex width="100%" justifyContent="center">
         <Image
-          src="/landing.svg"
+          src="/landing.png"
           alt="Cheers"
           width={1000}
-          height={500}
+          height={400}
           priority
         />
       </Flex>
+      <style>{`
+				html {
+          max-height: 100vh;
+					overflow-y: hidden;
+				}
+			`}</style>
     </Box>
   );
 };

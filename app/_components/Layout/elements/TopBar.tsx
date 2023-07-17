@@ -21,6 +21,7 @@ export const TopBar = () => {
           height={35}
           width={35}
           priority
+          style={{ width: "auto" }}
         />
         <Heading
           fontSize={{ base: "xl", md: "3xl" }}
