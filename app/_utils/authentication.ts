@@ -1,6 +1,7 @@
 import { cookies } from "next/headers";
 
-export const VINOMEMO_API_URL = process.env.VINOMEMO_API_URL;
+export const VINOMEMO_API_URL =
+  process.env.VINOMEMO_API_URL || "http://localhost:3001";
 
 export const authorize = async () => {
   const cookieStore = cookies();
