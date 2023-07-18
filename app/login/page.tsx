@@ -4,6 +4,10 @@ import { SwitchToReg } from "../_components/SwitchToReg";
 import { redirect } from "next/navigation";
 import { authorize } from "../_utils/authentication";
 
+export const metadata = {
+  title: "VinoMemo - Log in",
+};
+
 export default async function Login() {
   const user = await authorize();
   user && redirect("/notes");

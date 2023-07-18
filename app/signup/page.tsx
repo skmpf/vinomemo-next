@@ -4,6 +4,10 @@ import { SwitchToLogin } from "../_components/SwitchToLogin";
 import { redirect } from "next/navigation";
 import { authorize } from "../_utils/authentication";
 
+export const metadata = {
+  title: "VinoMemo - Sign up",
+};
+
 export default async function Signup() {
   const user = await authorize();
   user && redirect("/notes");
