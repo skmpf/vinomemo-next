@@ -14,7 +14,6 @@ import {
 import { getCookie } from "cookies-next";
 import jwt_decode from "jwt-decode";
 import { NoteCard } from "./NoteCard";
-import { VINOMEMO_API_URL } from "../_utils/authentication";
 import { INote } from "../_modules/note";
 
 type DecodedToken = {
@@ -22,6 +21,9 @@ type DecodedToken = {
     _id: string;
   };
 };
+
+const VINOMEMO_API_URL =
+  process.env.VINOMEMO_API_URL || "http://localhost:3001";
 
 export const NotesList = () => {
   const [notes, setNotes] = useState<INote[]>([]);

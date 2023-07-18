@@ -10,12 +10,14 @@ import {
   NoteFormInitialValues,
   NoteFormValidationSchema,
 } from "@/app/_modules/note";
-import { VINOMEMO_API_URL } from "@/app/_utils/authentication";
 import { AppearanceForm } from "./_components/AppearanceForm";
 import { InformationForm } from "./_components/InformationForm";
 import { NoseForm } from "./_components/NoseForm";
 import { PalateForm } from "./_components/PalateForm";
 import { ConclusionsForm } from "./_components/ConclusionsForm";
+
+export const VINOMEMO_API_URL =
+  process.env.VINOMEMO_API_URL || "http://localhost:3001";
 
 export const NoteForm = () => {
   const [isLoading, setIsLoading] = useState(false);

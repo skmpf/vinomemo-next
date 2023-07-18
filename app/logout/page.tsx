@@ -6,10 +6,6 @@ import { UserLayout } from "../_components/Layout/UserLayout";
 import { useLogout } from "../_hooks/useLogout";
 import { useRouter } from "next/navigation";
 
-export const metadata = {
-  title: "Logging out...",
-};
-
 export default function Logout() {
   const { isLoading, logoutUser } = useLogout();
   const router = useRouter();
