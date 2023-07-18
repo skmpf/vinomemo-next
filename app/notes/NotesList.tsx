@@ -11,19 +11,8 @@ import {
   Stack,
   useToast,
 } from "@chakra-ui/react";
-import { getCookie } from "cookies-next";
-import jwt_decode from "jwt-decode";
 import { NoteCard } from "./NoteCard";
 import { INote } from "../_modules/note";
-
-type DecodedToken = {
-  user: {
-    _id: string;
-  };
-};
-
-const VINOMEMO_API_URL =
-  process.env.VINOMEMO_API_URL || "http://localhost:3001";
 
 export const NotesList = () => {
   const [notes, setNotes] = useState<INote[]>([]);
@@ -33,18 +22,7 @@ export const NotesList = () => {
   useEffect(() => {
     const getNotes = async () => {
       try {
-        const token = getCookie("jwt");
-        if (!token) {
-          throw new Error("Token not found");
-        }
-        const decoded: DecodedToken = jwt_decode(token as string);
-        const userId = decoded?.user._id;
-
-        const res = await fetch(`${VINOMEMO_API_URL}/users/${userId}/notes`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+        const res = await fetch("http://localhost:3000/api/notes");
         if (!res.ok) throw new Error("Error fetching notes");
         const notes: INote[] = await res.json();
         setNotes(notes);
