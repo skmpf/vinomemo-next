@@ -113,7 +113,7 @@ export const NoteFormValidationSchema = Yup.object().shape({
       .max(100)
       .notRequired()
       .oneOf(["", "light", "medium", "pronounced"]),
-    aromas: Yup.string().max(200, "Too long").notRequired(),
+    aromas: Yup.string().max(300, "Too long").notRequired(),
   }),
   palate: Yup.object().shape({
     sweetness: Yup.string()
@@ -126,7 +126,7 @@ export const NoteFormValidationSchema = Yup.object().shape({
     intensity: Yup.string()
       .notRequired()
       .oneOf(["", "light", "medium", "pronounced"]),
-    flavors: Yup.string().max(200, "Too long").notRequired(),
+    flavors: Yup.string().max(300, "Too long").notRequired(),
     finish: Yup.string().notRequired().oneOf(["", "short", "medium", "long"]),
   }),
   conclusion: Yup.object().shape({
