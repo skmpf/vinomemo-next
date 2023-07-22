@@ -31,14 +31,14 @@ export const Summary = ({ id }: { id: string }) => {
     const getNote = async () => {
       try {
         const token = getCookie("jwt");
-        if (!token) return null;
+        if (!token) throw new Error("No token found");
 
         const res = await fetch(`${VINOMEMO_API_URL}/notes/${id}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         });
-        if (!res.ok) return null;
+        if (!res.ok) throw new Error("Error fetching note");
         const note = await res.json();
         setNote(note);
         setIsLoading(false);
