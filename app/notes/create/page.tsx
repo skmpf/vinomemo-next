@@ -1,6 +1,6 @@
 import { redirect } from "next/navigation";
 import { UserLayout } from "../../_components/Layout/UserLayout";
-import { authorize } from "../../_utils/authentication";
+import { authorize } from "../../_lib/authentication";
 import { NoteForm } from "./NoteForm";
 
 export const metadata = {

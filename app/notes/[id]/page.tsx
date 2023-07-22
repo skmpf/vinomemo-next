@@ -1,6 +1,6 @@
 import { UserLayout } from "@/app/_components/Layout/UserLayout";
 import { Summary } from "./Summary";
-import { authorize } from "@/app/_utils/authentication";
+import { authorize } from "@/app/_lib/authentication";
 
 type Params = {
   id: string;

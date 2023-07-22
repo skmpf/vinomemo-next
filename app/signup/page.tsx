@@ -2,7 +2,7 @@ import { UserLayout } from "../_components/Layout/UserLayout";
 import { SignupForm } from "./SignupForm";
 import { SwitchToLogin } from "../_components/SwitchToLogin";
 import { redirect } from "next/navigation";
-import { authorize } from "../_utils/authentication";
+import { authorize } from "../_lib/authentication";
 
 export const metadata = {
   title: "VinoMemo - Sign up",
