@@ -2,9 +2,15 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Button, Flex, HStack, Link, Spinner } from "@chakra-ui/react";
+import {
+  Button,
+  Flex,
+  HStack,
+  Link,
+  Spinner,
+  useToast,
+} from "@chakra-ui/react";
 import { Form, Formik } from "formik";
-import { getCookie } from "cookies-next";
 import {
   INote,
   NoteFormInitialValues,
@@ -15,29 +21,49 @@ import { InformationForm } from "./_components/InformationForm";
 import { NoseForm } from "./_components/NoseForm";
 import { PalateForm } from "./_components/PalateForm";
 import { ConclusionsForm } from "./_components/ConclusionsForm";
+import { getCookie } from "cookies-next";
 
-export const VINOMEMO_API_URL =
+const VINOMEMO_API_URL =
   process.env.VINOMEMO_API_URL || "http://localhost:3001";
 
 export const NoteForm = () => {
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
+  const toast = useToast();
 
-  const handleSubmit = async (values: INote) => {
-    if (!isLoading) {
-      setIsLoading(true);
+  const createNote = async (note: INote) => {
+    try {
       const token = getCookie("jwt");
-      const response = await fetch(`${VINOMEMO_API_URL}/notes`, {
+      if (!token) throw new Error("No token found");
+
+      const res = await fetch(`${VINOMEMO_API_URL}/notes`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify(values),
+        body: JSON.stringify(note),
       });
-      if (response.ok) {
-        router.push("/notes");
-      }
+      if (!res.ok) throw new Error("Error creating note");
+      return (await res.json()) as INote;
+    } catch (error) {
+      console.error(error);
+      toast({
+        title: "Error",
+        description:
+          "There was a problem creating your note, please try again later.",
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+      });
+    }
+  };
+
+  const handleSubmit = async (values: INote) => {
+    if (!isLoading) {
+      setIsLoading(true);
+      const note = await createNote(values);
+      note && router.push("/notes");
       setIsLoading(false);
     }
   };
