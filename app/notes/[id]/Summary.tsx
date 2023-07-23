@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import {
   Button,
   Card,
@@ -10,55 +9,15 @@ import {
   HStack,
   Heading,
   Link,
-  Spinner,
   Stack,
   StackDivider,
   Text,
-  useToast,
 } from "@chakra-ui/react";
-import { getCookie } from "cookies-next";
+
 import { INote } from "@/app/_modules/note";
 
-const VINOMEMO_API_URL =
-  process.env.VINOMEMO_API_URL || "http://localhost:3001";
-
-export const Summary = ({ id }: { id: string }) => {
-  const [note, setNote] = useState<INote>({} as INote);
-  const [isLoading, setIsLoading] = useState(true);
-  const toast = useToast();
-
-  useEffect(() => {
-    const getNote = async () => {
-      try {
-        const token = getCookie("jwt");
-        if (!token) throw new Error("No token found");
-
-        const res = await fetch(`${VINOMEMO_API_URL}/notes/${id}`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        if (!res.ok) throw new Error("Error fetching note");
-        const note = await res.json();
-        setNote(note);
-        setIsLoading(false);
-      } catch (error) {
-        console.error(error);
-        toast({
-          title: "Error",
-          description:
-            "There was a problem getting your note, please try again later.",
-          status: "error",
-          duration: 5000,
-          isClosable: true,
-        });
-      }
-    };
-    getNote();
-  }, [id, toast]);
-
-  if (isLoading) return <Spinner color="brand.900" />;
-
+export const Summary = ({ note }: { note: INote | undefined }) => {
+  if (!note) return null;
   return (
     <Stack width="100%" maxWidth="2xl">
       <HStack justifyContent="space-between" mb={4}>
