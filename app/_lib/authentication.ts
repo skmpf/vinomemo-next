@@ -7,7 +7,7 @@ export const VINOMEMO_API_URL =
 export const getJwt = () => {
   const cookieStore = cookies();
   const token = cookieStore.get("jwt")?.value;
-  if (!token) throw new Error("No token found");
+  if (!token) return null;
   return token;
 };
 
@@ -18,6 +18,6 @@ export const authorize = async () => {
     },
     cache: "no-store",
   });
-  if (!res.ok) throw new Error("Error fetching user");
+  if (!res.ok) return null;
   return (await res.json()) as IUser;
 };
