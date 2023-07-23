@@ -26,7 +26,11 @@ const getNotes = async () => {
       },
     });
     if (!res.ok) throw new Error("Error fetching notes");
-    return (await res.json()) as INote[];
+    const notes: INote[] = await res.json();
+    notes.sort((a: INote, b: INote) => {
+      return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+    });
+    return notes;
   } catch (error) {
     console.error(error);
   }
