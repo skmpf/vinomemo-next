@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation";
 import { UserLayout } from "../../_components/Layout/UserLayout";
 import { authorize } from "../../_lib/authentication";
-import { NoteForm } from "./NoteForm";
+import { NoteForm } from "../../_components/NoteForm/NoteForm";
 
 export const metadata = {
   title: "VinoMemo - New note",

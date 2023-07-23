@@ -29,9 +29,14 @@ export const Summary = ({ note }: { note: INote | undefined }) => {
             Added on {new Date(note.createdAt!).toLocaleString()}
           </Text>
         </Stack>
-        <Button as={Link} href="/notes">
-          Back
-        </Button>
+        <HStack>
+          <Button as={Link} href={`/notes/${note._id}/edit`}>
+            Edit
+          </Button>
+          <Button as={Link} href="/notes">
+            Back
+          </Button>
+        </HStack>
       </HStack>
       <Card>
         <CardHeader>
