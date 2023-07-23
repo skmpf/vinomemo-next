@@ -3,41 +3,49 @@ import * as Yup from "yup";
 export interface INote {
   information: {
     name: string;
-    country?: string;
-    region?: string;
-    grapes?: string;
-    producer?: string;
-    vintage?: number;
-    alcohol?: number;
+    country: string;
+    region: string;
+    grapes: string;
+    producer: string;
+    vintage: number | undefined;
+    alcohol: number | undefined;
   };
-  appearance?: {
-    intensity?: string;
-    color?: string;
-    variant?: string;
+  appearance: {
+    intensity: string;
+    color: string;
+    variant: string;
   };
-  nose?: {
-    intensity?: string;
-    aromas?: string;
+  nose: {
+    intensity: string;
+    aromas: string;
   };
-  palate?: {
-    sweetness?: string;
-    acidity?: string;
-    tannin?: string;
-    alcohol?: string;
-    body?: string;
-    intensity?: string;
-    flavors?: string;
-    finish?: string;
+  palate: {
+    sweetness: string;
+    acidity: string;
+    tannin: string;
+    alcohol: string;
+    body: string;
+    intensity: string;
+    flavors: string;
+    finish: string;
   };
-  conclusions?: {
-    quality?: string;
-    comments?: string;
+  conclusions: {
+    quality: string;
+    comments: string;
   };
-  _id?: string;
-  createdAt?: string;
+  _id: string;
+  creator: string;
+  createdAt: string;
+  updatedAt: string;
+  __v: number;
 }
 
-export const NoteFormInitialValues: INote = {
+export type NoteFormValues = Omit<
+  INote,
+  "_id" | "creator" | "createdAt" | "updatedAt" | "__v"
+>;
+
+export const NoteFormInitialValues: NoteFormValues = {
   information: {
     name: "",
     country: "",

@@ -5,4 +5,5 @@ export interface IUser {
   isAdmin: boolean;
   createdAt: string;
   updatedAt: string;
+  __v: number;
 }

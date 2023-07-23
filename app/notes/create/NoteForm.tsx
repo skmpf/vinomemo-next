@@ -15,6 +15,7 @@ import {
   INote,
   NoteFormInitialValues,
   NoteFormValidationSchema,
+  NoteFormValues,
 } from "@/app/_modules/note";
 import { AppearanceForm } from "./_components/AppearanceForm";
 import { InformationForm } from "./_components/InformationForm";
@@ -31,7 +32,7 @@ export const NoteForm = () => {
   const router = useRouter();
   const toast = useToast();
 
-  const createNote = async (note: INote) => {
+  const createNote = async (note: NoteFormValues) => {
     try {
       const token = getCookie("jwt");
       if (!token) throw new Error("No token found");
@@ -59,7 +60,7 @@ export const NoteForm = () => {
     }
   };
 
-  const handleSubmit = async (values: INote) => {
+  const handleSubmit = async (values: NoteFormValues) => {
     if (!isLoading) {
       setIsLoading(true);
       const note = await createNote(values);
