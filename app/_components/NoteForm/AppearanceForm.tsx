@@ -7,7 +7,7 @@ import {
   FormErrorMessage,
   FormLabel,
 } from "@chakra-ui/react";
-import { FormikErrors, FormikTouched, getIn } from "formik";
+import { FormikErrors, FormikTouched, getIn, useFormikContext } from "formik";
 import { FormContainer } from "./FormContainer";
 import { ColorPicker } from "./elements/ColorPicker";
 import { ScaleRadio } from "./elements/ScaleRadio";
@@ -21,6 +21,7 @@ export const AppearanceForm: React.FC<FormFieldsContainerProps> = ({
   errors,
   touched,
 }) => {
+  const { values } = useFormikContext<INote>();
   const colorError =
     getIn(errors, "appearance.color.main") &&
     getIn(errors, "appearance.color.variants");
@@ -46,6 +47,7 @@ export const AppearanceForm: React.FC<FormFieldsContainerProps> = ({
           <ScaleRadio
             name="appearance.intensity"
             options={["light", "medium", "pronounced"]}
+            value={values.appearance.intensity}
           />
           <FormErrorMessage>
             {getIn(errors, "appearance.intensity")}
@@ -61,7 +63,7 @@ export const AppearanceForm: React.FC<FormFieldsContainerProps> = ({
           <FormLabel htmlFor="text" color="brand.900">
             Color
           </FormLabel>
-          <ColorPicker />
+          <ColorPicker value={values.appearance} />
         </Flex>
         <FormErrorMessage>{colorError}</FormErrorMessage>
       </FormControl>

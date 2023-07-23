@@ -46,18 +46,18 @@ export const RadioCard: React.FC<RadioCardProps> = ({
 type ScaleRadioProps = {
   name: string;
   options: string[];
-  selected?: string;
+  value?: string;
 };
 
 export const ScaleRadio: React.FC<ScaleRadioProps> = ({
   name,
   options,
-  selected = "",
+  value = "",
 }) => {
   const [, , helpers] = useField(name);
   const { getRootProps, getRadioProps } = useRadioGroup({
     name: name,
-    defaultValue: selected,
+    defaultValue: value,
     onChange: helpers.setValue,
   });
   const group = getRootProps();

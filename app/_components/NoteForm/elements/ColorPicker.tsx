@@ -149,9 +149,13 @@ const VariantSelect: React.FC<VariantSelectProps> = ({
   );
 };
 
-export const ColorPicker = ({ userColor = "white", userVariant = "" }) => {
-  const [selectedColor, setSelectedColor] = useState(userColor);
-  const [selectedVariant, setSelectedVariant] = useState(userVariant);
+export const ColorPicker = ({
+  value,
+}: {
+  value: { color: string; variant: string };
+}) => {
+  const [selectedColor, setSelectedColor] = useState(value.color);
+  const [selectedVariant, setSelectedVariant] = useState(value.variant);
 
   const handleColorClick = (color: string) => {
     setSelectedColor(color);

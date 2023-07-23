@@ -11,7 +11,7 @@ import {
   NumberInputField,
   Select,
 } from "@chakra-ui/react";
-import { Field, FormikErrors, FormikTouched } from "formik";
+import { Field, FormikErrors, FormikTouched, useFormikContext } from "formik";
 import { FormContainer } from "./FormContainer";
 
 interface FormFieldsContainerProps {
@@ -23,6 +23,7 @@ export const InformationForm: React.FC<FormFieldsContainerProps> = ({
   errors,
   touched,
 }) => {
+  const { values } = useFormikContext<INote>();
   return (
     <FormContainer title="Information">
       <FormControl
@@ -156,6 +157,7 @@ export const InformationForm: React.FC<FormFieldsContainerProps> = ({
             variant="flushed"
             focusBorderColor="gray.400"
             width={{ base: "100%", md: "75%" }}
+            defaultValue={values.information.vintage}
           >
             <Field
               as={NumberInputField}

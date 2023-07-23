@@ -8,7 +8,13 @@ import {
   FormLabel,
   Input,
 } from "@chakra-ui/react";
-import { Field, FormikErrors, FormikTouched, getIn } from "formik";
+import {
+  Field,
+  FormikErrors,
+  FormikTouched,
+  getIn,
+  useFormikContext,
+} from "formik";
 import { FormContainer } from "./FormContainer";
 import { ScaleRadio } from "./elements/ScaleRadio";
 
@@ -21,6 +27,7 @@ export const NoseForm: React.FC<FormFieldsContainerProps> = ({
   errors,
   touched,
 }) => {
+  const { values } = useFormikContext<INote>();
   return (
     <FormContainer title="Nose">
       <FormControl
@@ -38,6 +45,7 @@ export const NoseForm: React.FC<FormFieldsContainerProps> = ({
           <ScaleRadio
             name="nose.intensity"
             options={["light", "medium", "pronounced"]}
+            value={values.nose.intensity}
           />
         </Flex>
         <FormErrorMessage>{getIn(errors, "nose.intensity")}</FormErrorMessage>

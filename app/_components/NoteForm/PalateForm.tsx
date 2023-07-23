@@ -8,7 +8,13 @@ import {
   FormLabel,
   Input,
 } from "@chakra-ui/react";
-import { Field, FormikErrors, FormikTouched, getIn } from "formik";
+import {
+  Field,
+  FormikErrors,
+  FormikTouched,
+  getIn,
+  useFormikContext,
+} from "formik";
 import { FormContainer } from "./FormContainer";
 import { ScaleRadio } from "./elements/ScaleRadio";
 
@@ -21,6 +27,7 @@ export const PalateForm: React.FC<FormFieldsContainerProps> = ({
   errors,
   touched,
 }) => {
+  const { values } = useFormikContext<INote>();
   return (
     <FormContainer title="Palate">
       <FormControl
@@ -39,6 +46,7 @@ export const PalateForm: React.FC<FormFieldsContainerProps> = ({
           <ScaleRadio
             name="palate.sweetness"
             options={["dry", "off-dry", "medium", "sweet"]}
+            value={values.palate.sweetness}
           />
         </Flex>
         <FormErrorMessage>{getIn(errors, "palate.sweetness")}</FormErrorMessage>
@@ -58,6 +66,7 @@ export const PalateForm: React.FC<FormFieldsContainerProps> = ({
           <ScaleRadio
             name="palate.acidity"
             options={["low", "medium", "high"]}
+            value={values.palate.acidity}
           />
         </Flex>
         <FormErrorMessage>{getIn(errors, "palate.acidity")}</FormErrorMessage>
@@ -77,6 +86,7 @@ export const PalateForm: React.FC<FormFieldsContainerProps> = ({
           <ScaleRadio
             name="palate.tannin"
             options={["low", "medium", "high"]}
+            value={values.palate.tannin}
           />
         </Flex>
         <FormErrorMessage>{getIn(errors, "palate.tannin")}</FormErrorMessage>
@@ -96,6 +106,7 @@ export const PalateForm: React.FC<FormFieldsContainerProps> = ({
           <ScaleRadio
             name="palate.alcohol"
             options={["low", "medium", "high"]}
+            value={values.palate.alcohol}
           />
         </Flex>
         <FormErrorMessage>{getIn(errors, "palate.alcohol")}</FormErrorMessage>
@@ -115,6 +126,7 @@ export const PalateForm: React.FC<FormFieldsContainerProps> = ({
           <ScaleRadio
             name="palate.body"
             options={["light", "medium", "full"]}
+            value={values.palate.body}
           />
         </Flex>
         <FormErrorMessage>{getIn(errors, "palate.body")}</FormErrorMessage>
@@ -135,6 +147,7 @@ export const PalateForm: React.FC<FormFieldsContainerProps> = ({
           <ScaleRadio
             name="palate.intensity"
             options={["light", "medium", "pronounced"]}
+            value={values.palate.intensity}
           />
         </Flex>
         <FormErrorMessage>{getIn(errors, "palate.intensity")}</FormErrorMessage>
@@ -180,6 +193,7 @@ export const PalateForm: React.FC<FormFieldsContainerProps> = ({
           <ScaleRadio
             name="palate.finish"
             options={["short", "medium", "long"]}
+            value={values.palate.finish}
           />
         </Flex>
         <FormErrorMessage>{getIn(errors, "palate.finish")}</FormErrorMessage>

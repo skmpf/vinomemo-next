@@ -1,12 +1,38 @@
 import { UserLayout } from "@/app/_components/Layout/UserLayout";
-import { authorize } from "@/app/_lib/authentication";
+import { NoteForm } from "@/app/_components/NoteForm/NoteForm";
+import { VINOMEMO_API_URL, authorize, getJwt } from "@/app/_lib/authentication";
+import { INote } from "@/app/_modules/note";
+
+type Params = {
+  id: string;
+};
 
 export const metadata = {
   title: `VinoMemo - Edit note`,
 };
 
-export default async function Note() {
-  await authorize();
+const getNote = async (id: string) => {
+  try {
+    const token = getJwt();
+    const res = await fetch(`${VINOMEMO_API_URL}/notes/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    if (!res.ok) throw new Error("Error fetching note");
+    return (await res.json()) as INote;
+  } catch (error) {
+    console.error(error);
+  }
+};
 
-  return <UserLayout>hello</UserLayout>;
+export default async function NoteEdit({ params }: { params: Params }) {
+  await authorize();
+  const note = await getNote(params.id);
+
+  return (
+    <UserLayout>
+      <NoteForm note={note} />
+    </UserLayout>
+  );
 }

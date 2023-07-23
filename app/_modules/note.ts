@@ -8,7 +8,7 @@ export interface INote {
     grapes: string;
     producer: string;
     vintage: number | undefined;
-    alcohol: number | undefined;
+    alcohol: string;
   };
   appearance: {
     intensity: string;
@@ -53,7 +53,7 @@ export const NoteFormInitialValues: NoteFormValues = {
     grapes: "",
     producer: "",
     vintage: undefined,
-    alcohol: undefined,
+    alcohol: "",
   },
   appearance: {
     intensity: "",
@@ -93,7 +93,7 @@ export const NoteFormValidationSchema = Yup.object().shape({
       .min(1700, "Vintage does not exist")
       .max(new Date().getFullYear(), "Vintage must be in the past")
       .notRequired(),
-    alcohol: Yup.number().positive().min(0).max(22).notRequired(),
+    alcohol: Yup.string().min(3).max(4).notRequired(),
   }),
   appearance: Yup.object().shape({
     intensity: Yup.string()

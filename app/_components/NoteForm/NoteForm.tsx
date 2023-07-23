@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import {
   Button,
   Flex,
@@ -27,9 +27,10 @@ import { getCookie } from "cookies-next";
 const VINOMEMO_API_URL =
   process.env.VINOMEMO_API_URL || "http://localhost:3001";
 
-export const NoteForm = () => {
+export const NoteForm = ({ note }: { note?: INote }) => {
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
+  const params = useParams();
   const toast = useToast();
 
   const createNote = async (note: NoteFormValues) => {
@@ -60,10 +61,40 @@ export const NoteForm = () => {
     }
   };
 
+  const updateNote = async (note: NoteFormValues) => {
+    try {
+      const token = getCookie("jwt");
+      if (!token) throw new Error("No token found");
+
+      const res = await fetch(`${VINOMEMO_API_URL}/notes/${params.id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(note),
+      });
+      if (!res.ok) throw new Error("Error updating note");
+      return (await res.json()) as INote;
+    } catch (error) {
+      console.error(error);
+      toast({
+        title: "Error",
+        description:
+          "There was a problem updating your note, please try again later.",
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+      });
+    }
+  };
+
   const handleSubmit = async (values: NoteFormValues) => {
     if (!isLoading) {
       setIsLoading(true);
-      const note = await createNote(values);
+      const note = params.id
+        ? await updateNote(values)
+        : await createNote(values);
       note && router.push("/notes");
       setIsLoading(false);
     }
@@ -72,7 +103,7 @@ export const NoteForm = () => {
   return (
     <Flex direction="column" width="100%" maxWidth="2xl">
       <Formik
-        initialValues={NoteFormInitialValues}
+        initialValues={note ? note : NoteFormInitialValues}
         validationSchema={NoteFormValidationSchema}
         validateOnBlur={false}
         validateOnChange={false}
