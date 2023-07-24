@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { setCookie } from "cookies-next";
+import { useToast } from "@chakra-ui/react";
 
 type UseLoginResponse = {
   isLoading: boolean;
-  error: any;
   loginUser: (email: string, password: string) => Promise<void>;
 };
 
@@ -12,14 +12,12 @@ const VINOMEMO_API_URL = process.env.VINOMEMO_API_URL;
 
 export const useLogin = (): UseLoginResponse => {
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<any>(null);
   const router = useRouter();
+  const toast = useToast();
 
   const loginUser = async (email: string, password: string) => {
-    setIsLoading(true);
-    setError(null);
-
     try {
+      setIsLoading(true);
       const response = await fetch(`${VINOMEMO_API_URL}/login`, {
         method: "POST",
         headers: {
@@ -27,28 +25,40 @@ export const useLogin = (): UseLoginResponse => {
         },
         body: JSON.stringify({ email, password }),
       });
-
-      if (!response.ok) {
-        throw new Error(response.statusText);
-      }
-
       const data = await response.json();
 
-      setCookie("jwt", data.token);
+      if (!response.ok) {
+        throw new Error(data.message);
+      }
 
+      setCookie("jwt", data.token);
       router.push("/notes");
-    } catch (err) {
-      if (err instanceof Error) {
-        setError(err.message);
+    } catch (error) {
+      if (error instanceof Error) {
+        console.error(error);
+        toast({
+          title: "Error",
+          description: error.message,
+          status: "error",
+          duration: 5000,
+          isClosable: true,
+        });
       } else {
-        setError("An unknown error occurred");
+        toast({
+          title: "Error",
+          description:
+            "There was a problem logging you in, please try again later.",
+          status: "error",
+          duration: 5000,
+          isClosable: true,
+        });
       }
     } finally {
       setIsLoading(false);
     }
   };
 
-  return { isLoading, error, loginUser };
+  return { isLoading, loginUser };
 };
 
 export default useLogin;

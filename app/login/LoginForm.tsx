@@ -15,7 +15,7 @@ import * as Yup from "yup";
 import { useLogin } from "../_hooks/useLogin";
 
 export const LoginForm = () => {
-  const { isLoading, error, loginUser } = useLogin();
+  const { isLoading, loginUser } = useLogin();
 
   return (
     <Formik
