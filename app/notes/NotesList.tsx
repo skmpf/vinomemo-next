@@ -7,7 +7,6 @@ import { NoteCard } from "./NoteCard";
 import { INote } from "../_modules/note";
 
 export const NotesList = ({ notes }: { notes: INote[] | undefined }) => {
-  console.log("🚀 ~ file: NotesList.tsx:11 ~ NotesList ~ notes:", notes);
   if (!notes) return null;
   return (
     <Flex direction="column" width="100%" maxWidth="2xl">
