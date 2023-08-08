@@ -197,7 +197,7 @@ export const Summary = ({ note }: { note: INote | undefined }) => {
             >
               <Heading size="xs">Acidity</Heading>
               <Text fontSize="sm" color="gray.900" width="75%">
-                {note.palate?.sweetness}
+                {note.palate?.acidity}
               </Text>
             </Flex>
             <Flex
