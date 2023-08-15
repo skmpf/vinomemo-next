@@ -17,6 +17,7 @@ import {
   ModalFooter,
   useDisclosure,
   useToast,
+  Link,
 } from "@chakra-ui/react";
 import { getCookie } from "cookies-next";
 import { IUser } from "../_modules/user";
@@ -94,7 +95,9 @@ export const UserCard: React.FC<{
                 <Button onClick={(event) => handleClick(event, user._id)}>
                   Delete
                 </Button>
-                <Button>Edit</Button>
+                <Button as={Link} href={`/backoffice/user/${user._id}`}>
+                  Edit
+                </Button>
               </HStack>
             </Flex>
           </CardFooter>

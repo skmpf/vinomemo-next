@@ -13,36 +13,57 @@ import {
 import { Field, Formik } from "formik";
 import * as Yup from "yup";
 import { useSignup } from "../_hooks/useSignup";
+import { IUser, UserFormInitialValues, UserFormValues } from "../_modules/user";
+import { useParams, usePathname, useRouter } from "next/navigation";
+import { useState } from "react";
+import api from "../_modules/api";
 
-export const SignupForm = () => {
+export const SignupForm = ({ user }: { user?: IUser | null }) => {
   const { isLoading, signupUser } = useSignup();
+  const [isUpdateLoading, setIsUpdateLoading] = useState(false);
+  const pathname = usePathname();
+  const params = useParams();
+  const router = useRouter();
+
+  const handleSubmit = async (values: UserFormValues) => {
+    if (!isLoading && !isUpdateLoading) {
+      if (pathname.includes("/backoffice")) {
+        setIsUpdateLoading(true);
+        await api.updateUser({
+          id: params.id as string,
+          name: values.name,
+          password: values.password,
+          email: values.email,
+        });
+        setIsUpdateLoading(false);
+        router.back();
+      } else {
+        signupUser(values.name, values.password, values.email);
+      }
+    }
+  };
 
   return (
     <Formik
-      initialValues={{
-        name: "",
-        email: "",
-        password: "",
-        passwordConfirm: "",
-      }}
+      initialValues={
+        user ? { ...UserFormInitialValues, ...user } : UserFormInitialValues
+      }
       validationSchema={Yup.object().shape({
         name: Yup.string().required("Field must not be empty."),
         email: Yup.string()
-          .email("The format of your email address is not valid.")
+          .email("Email address format is not valid.")
           .required("Field must not be empty."),
         password: Yup.string()
-          .min(8, "Your password must contain 8 characters or more.")
-          .max(20, "Your password must contain 20 characters or less.")
+          .min(8, "Password must contain 8 characters or more.")
+          .max(20, "Password must contain 20 characters or less.")
           .required("Field must not be empty."),
         passwordConfirm: Yup.string()
-          .oneOf([Yup.ref("password")], "Your password must match")
+          .oneOf([Yup.ref("password")], "Both passwords must match")
           .required("Field must not be empty."),
       })}
       validateOnBlur={false}
       validateOnChange={false}
-      onSubmit={(values) => {
-        !isLoading && signupUser(values.name, values.password, values.email);
-      }}
+      onSubmit={(values) => handleSubmit(values)}
     >
       {({ handleSubmit, errors, touched }) => (
         <form
@@ -134,7 +155,13 @@ export const SignupForm = () => {
               textTransform="uppercase"
               isDisabled={isLoading}
             >
-              {isLoading ? <Spinner /> : "Sign up"}
+              {isLoading ? (
+                <Spinner />
+              ) : pathname.includes("/backoffice") ? (
+                "Save"
+              ) : (
+                "Sign up"
+              )}
             </Button>
           </VStack>
         </form>
