@@ -3,10 +3,13 @@
 import { Heading, HStack, useTheme } from "@chakra-ui/react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { TopBarButtons } from "./TopBarButtons";
+import { isAdminRoute } from "@/app/_modules/route";
 
 export const TopBar = () => {
   const theme = useTheme();
+  const pathname = usePathname();
 
   return (
     <HStack
@@ -34,6 +37,9 @@ export const TopBar = () => {
           Memo
         </Heading>
       </HStack>
+      {isAdminRoute(pathname) && (
+        <Heading fontSize={{ base: "xl", md: "3xl" }}>Backoffice</Heading>
+      )}
       <TopBarButtons />
     </HStack>
   );
