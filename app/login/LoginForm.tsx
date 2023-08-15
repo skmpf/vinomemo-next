@@ -25,11 +25,11 @@ export const LoginForm = () => {
       }}
       validationSchema={Yup.object().shape({
         email: Yup.string()
-          .email("The format of your email address is not valid.")
+          .email("Email address format is not valid.")
           .required("Field must not be empty."),
         password: Yup.string()
-          .min(8, "Your password must contain 8 characters or more.")
-          .max(20, "Your password must contain 20 characters or less.")
+          .min(8, "Password must contain 8 characters or more.")
+          .max(20, "Password must contain 20 characters or less.")
           .required("Field must not be empty."),
       })}
       validateOnBlur={false}
