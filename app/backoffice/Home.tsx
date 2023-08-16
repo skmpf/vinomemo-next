@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Tabs, TabList, TabPanels, Tab, TabPanel, Box } from "@chakra-ui/react";
 import UserSearchForm from "./UserSearchForm";
 import { IUser } from "../_modules/user";
-import { UserCard } from "./UserCard";
+import { UserList } from "./UserList";
 
 const Home: React.FC = () => {
   const [users, setUsers] = useState<IUser[] | []>([]);
@@ -19,7 +19,7 @@ const Home: React.FC = () => {
         <TabPanels>
           <TabPanel>
             <UserSearchForm setUsers={setUsers} />
-            <UserCard users={users} setUsers={setUsers} />
+            <UserList users={users} setUsers={setUsers} />
           </TabPanel>
           <TabPanel></TabPanel>
         </TabPanels>

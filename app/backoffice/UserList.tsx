@@ -25,7 +25,7 @@ import { IUser } from "../_modules/user";
 const VINOMEMO_API_URL =
   process.env.VINOMEMO_API_URL || "http://localhost:3001";
 
-export const UserCard: React.FC<{
+export const UserList: React.FC<{
   users: IUser[] | [];
   setUsers: Dispatch<SetStateAction<IUser[] | []>>;
 }> = ({ users, setUsers }) => {
