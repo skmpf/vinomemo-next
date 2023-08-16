@@ -12,7 +12,7 @@ import {
 } from "@chakra-ui/react";
 import { Field, Formik } from "formik";
 import * as Yup from "yup";
-import { useLogin } from "../_hooks/useLogin";
+import { useLogin } from "@/_hooks/useLogin";
 
 export const LoginForm = () => {
   const { isLoading, loginUser } = useLogin();

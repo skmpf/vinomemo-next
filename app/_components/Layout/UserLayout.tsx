@@ -4,7 +4,7 @@ import { Container, Spinner, VStack } from "@chakra-ui/react";
 import {
   TitleDescription,
   TitleDescriptionProps,
-} from "./elements/TitleDescription";
+} from "@/_components/Layout/elements/TitleDescription";
 
 export type LoadableLayout = {
   isLoading?: boolean;

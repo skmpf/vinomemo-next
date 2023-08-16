@@ -2,7 +2,7 @@
 
 import { CacheProvider } from "@chakra-ui/next-js";
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
-import { roboto, notoSerif } from "../fonts";
+import { roboto, notoSerif } from "@/fonts";
 
 export const theme = extendTheme({
   config: {

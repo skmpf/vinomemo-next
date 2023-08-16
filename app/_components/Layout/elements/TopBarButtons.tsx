@@ -2,7 +2,7 @@
 
 import { usePathname } from "next/navigation";
 import { Button, HStack, Link } from "@chakra-ui/react";
-import { isProtectedRoute, isPublicRoute } from "@/app/_modules/route";
+import { isProtectedRoute, isPublicRoute } from "@/_modules/route";
 
 export const TopBarButtons = () => {
   const pathname = usePathname();

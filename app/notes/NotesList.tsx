@@ -3,8 +3,8 @@
 import Link from "next/link";
 import { Button, Flex, HStack, Heading, Stack, Text } from "@chakra-ui/react";
 import { AddIcon } from "@chakra-ui/icons";
-import { NoteCard } from "./NoteCard";
-import { INote } from "../_modules/note";
+import { NoteCard } from "@/notes/NoteCard";
+import { INote } from "@/_modules/note";
 
 export const NotesList = ({ notes }: { notes: INote[] | undefined }) => {
   if (!notes) return null;

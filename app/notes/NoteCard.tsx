@@ -23,7 +23,7 @@ import { DeleteIcon, StarIcon } from "@chakra-ui/icons";
 import { MdLocationOn } from "react-icons/md";
 import { getCookie } from "cookies-next";
 import { useRouter } from "next/navigation";
-import { INote } from "../_modules/note";
+import { INote } from "@/_modules/note";
 
 type NoteCardProps = {
   note: INote;

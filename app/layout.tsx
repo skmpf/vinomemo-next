@@ -1,6 +1,6 @@
 import { Metadata } from "next";
-import { TopBar } from "./_components/Layout/elements/TopBar";
-import { Providers } from "./providers";
+import { TopBar } from "@/_components/Layout/elements/TopBar";
+import { Providers } from "@/providers";
 
 export const metadata: Metadata = {
   title: "VinoMemo - Better wine tasting notes",

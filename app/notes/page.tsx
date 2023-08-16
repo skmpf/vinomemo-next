@@ -1,10 +1,10 @@
 import { redirect } from "next/navigation";
 import jwt_decode from "jwt-decode";
-import { UserLayout } from "../_components/Layout/UserLayout";
-import { NotesList } from "./NotesList";
-import { VINOMEMO_API_URL, authorize, getJwt } from "../_lib/authentication";
-import { IUser } from "../_modules/user";
-import { INote } from "../_modules/note";
+import { UserLayout } from "@/_components/Layout/UserLayout";
+import { NotesList } from "@/notes/NotesList";
+import { VINOMEMO_API_URL, authorize, getJwt } from "@/_lib/authentication";
+import { IUser } from "@/_modules/user";
+import { INote } from "@/_modules/note";
 
 type DecodedToken = {
   user: IUser;

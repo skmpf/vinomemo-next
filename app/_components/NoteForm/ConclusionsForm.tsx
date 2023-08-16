@@ -1,6 +1,6 @@
 "use client";
 
-import { INote } from "@/app/_modules/note";
+import { INote } from "@/_modules/note";
 import {
   Flex,
   FormControl,
@@ -10,7 +10,7 @@ import {
   Textarea,
 } from "@chakra-ui/react";
 import { Field, FormikErrors, FormikTouched, getIn } from "formik";
-import { FormContainer } from "./FormContainer";
+import { FormContainer } from "@/_components/NoteForm/FormContainer";
 
 interface FormFieldsContainerProps {
   errors: FormikErrors<INote>;

@@ -1,7 +1,7 @@
-import { UserLayout } from "@/app/_components/Layout/UserLayout";
-import { Summary } from "./Summary";
-import { VINOMEMO_API_URL, authorize, getJwt } from "@/app/_lib/authentication";
-import { INote } from "@/app/_modules/note";
+import { UserLayout } from "@/_components/Layout/UserLayout";
+import { Summary } from "@/notes/[id]/Summary";
+import { VINOMEMO_API_URL, authorize, getJwt } from "@/_lib/authentication";
+import { INote } from "@/_modules/note";
 
 type Params = {
   id: string;

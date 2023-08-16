@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { UserLayout } from "../_components/Layout/UserLayout";
+import { UserLayout } from "@/_components/Layout/UserLayout";
 
 export default function Logout() {
   const router = useRouter();

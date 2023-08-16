@@ -1,5 +1,5 @@
 import { cookies } from "next/headers";
-import { IUser } from "../_modules/user";
+import { IUser } from "@/_modules/user";
 
 export const VINOMEMO_API_URL =
   process.env.VINOMEMO_API_URL || "http://localhost:3001";

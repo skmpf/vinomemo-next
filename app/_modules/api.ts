@@ -1,6 +1,6 @@
 import { getCookie, setCookie } from "cookies-next";
-import { INote, NoteFormValues } from "./note";
-import { IUser } from "./user";
+import { INote, NoteFormValues } from "@/_modules/note";
+import { IUser } from "@/_modules/user";
 
 const VINOMEMO_API_URL =
   process.env.VINOMEMO_API_URL || "http://localhost:3001";

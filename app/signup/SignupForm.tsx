@@ -12,11 +12,11 @@ import {
 } from "@chakra-ui/react";
 import { Field, Formik } from "formik";
 import * as Yup from "yup";
-import { useSignup } from "../_hooks/useSignup";
-import { IUser, UserFormInitialValues, UserFormValues } from "../_modules/user";
+import { useSignup } from "@/_hooks/useSignup";
+import { IUser, UserFormInitialValues, UserFormValues } from "@/_modules/user";
 import { useParams, usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
-import api from "../_modules/api";
+import api from "@/_modules/api";
 
 export const SignupForm = ({ user }: { user?: IUser | null }) => {
   const { isLoading, signupUser } = useSignup();

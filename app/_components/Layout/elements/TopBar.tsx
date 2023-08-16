@@ -4,8 +4,8 @@ import { Heading, HStack, useTheme } from "@chakra-ui/react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { TopBarButtons } from "./TopBarButtons";
-import { isAdminRoute } from "@/app/_modules/route";
+import { TopBarButtons } from "@/_components/Layout/elements/TopBarButtons";
+import { isAdminRoute } from "@/_modules/route";
 
 export const TopBar = () => {
   const theme = useTheme();

@@ -14,7 +14,7 @@ import {
   Text,
 } from "@chakra-ui/react";
 
-import { INote } from "@/app/_modules/note";
+import { INote } from "@/_modules/note";
 
 export const Summary = ({ note }: { note: INote | undefined }) => {
   if (!note) return null;

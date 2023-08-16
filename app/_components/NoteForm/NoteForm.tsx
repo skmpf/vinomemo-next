@@ -16,12 +16,12 @@ import {
   NoteFormInitialValues,
   NoteFormValidationSchema,
   NoteFormValues,
-} from "@/app/_modules/note";
-import { AppearanceForm } from "./AppearanceForm";
-import { InformationForm } from "./InformationForm";
-import { NoseForm } from "./NoseForm";
-import { PalateForm } from "./PalateForm";
-import { ConclusionsForm } from "./ConclusionsForm";
+} from "@/_modules/note";
+import { AppearanceForm } from "@/_components/NoteForm/AppearanceForm";
+import { InformationForm } from "@/_components/NoteForm/InformationForm";
+import { NoseForm } from "@/_components/NoteForm/NoseForm";
+import { PalateForm } from "@/_components/NoteForm/PalateForm";
+import { ConclusionsForm } from "@/_components/NoteForm/ConclusionsForm";
 import { getCookie } from "cookies-next";
 
 const VINOMEMO_API_URL =
