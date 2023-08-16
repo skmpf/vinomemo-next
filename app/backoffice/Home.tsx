@@ -2,12 +2,16 @@
 
 import { useState } from "react";
 import { Tabs, TabList, TabPanels, Tab, TabPanel, Box } from "@chakra-ui/react";
-import UserSearchForm from "./UserSearchForm";
-import { IUser } from "../_modules/user";
-import { UserList } from "./UserList";
+import UserSearchForm from "@/backoffice/UserSearchForm";
+import NoteSearchForm from "@/backoffice/NoteSearchForm";
+import { IUser } from "@/_modules/user";
+import { INote } from "@/_modules/note";
+import { UserList } from "@/backoffice/UserList";
+import { NoteList } from "@/backoffice/NoteList";
 
 const Home: React.FC = () => {
   const [users, setUsers] = useState<IUser[] | []>([]);
+  const [notes, setNotes] = useState<INote[] | []>([]);
 
   return (
     <Box width="100%">
@@ -21,7 +25,10 @@ const Home: React.FC = () => {
             <UserSearchForm setUsers={setUsers} />
             <UserList users={users} setUsers={setUsers} />
           </TabPanel>
-          <TabPanel></TabPanel>
+          <TabPanel>
+            <NoteSearchForm setNotes={setNotes} />
+            <NoteList notes={notes} setNotes={setNotes} />
+          </TabPanel>
         </TabPanels>
       </Tabs>
     </Box>

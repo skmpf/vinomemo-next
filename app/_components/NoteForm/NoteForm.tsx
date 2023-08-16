@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { useParams, useRouter } from "next/navigation";
+import { useParams, usePathname, useRouter } from "next/navigation";
 import {
   Button,
   Flex,
@@ -27,9 +27,10 @@ import { getCookie } from "cookies-next";
 const VINOMEMO_API_URL =
   process.env.VINOMEMO_API_URL || "http://localhost:3001";
 
-export const NoteForm = ({ note }: { note?: INote }) => {
+export const NoteForm = ({ note }: { note?: INote | null }) => {
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
+  const pathname = usePathname();
   const params = useParams();
   const toast = useToast();
 
@@ -95,7 +96,22 @@ export const NoteForm = ({ note }: { note?: INote }) => {
       const note = params.id
         ? await updateNote(values)
         : await createNote(values);
-      note && router.push("/notes");
+      if (note) {
+        toast({
+          title: "Sucess",
+          description:
+            "Your note was successfully saved, you can now view it in your notes.",
+          status: "success",
+          duration: 5000,
+          isClosable: true,
+        });
+
+        if (pathname.includes("/backoffice")) {
+          router.push("/backoffice");
+        } else {
+          router.push("/notes");
+        }
+      }
       setIsLoading(false);
     }
   };
@@ -108,7 +124,7 @@ export const NoteForm = ({ note }: { note?: INote }) => {
         validateOnBlur={false}
         validateOnChange={false}
         onSubmit={(values) => {
-          !isLoading && handleSubmit(values);
+          handleSubmit(values);
         }}
       >
         {({ errors, touched }) => (
@@ -117,7 +133,12 @@ export const NoteForm = ({ note }: { note?: INote }) => {
               <Button type="submit" isDisabled={isLoading}>
                 {isLoading ? <Spinner /> : "Save"}
               </Button>
-              <Button as={Link} href="/notes">
+              <Button
+                as={Link}
+                href={
+                  pathname.includes("/backoffice") ? "/backoffice" : "/notes"
+                }
+              >
                 Close
               </Button>
             </HStack>

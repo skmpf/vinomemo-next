@@ -7,30 +7,30 @@ const VINOMEMO_API_URL =
 
 const api = {
   login: async (email: string, password: string) => {
-    const response = await fetch(`${VINOMEMO_API_URL}/login`, {
+    const res = await fetch(`${VINOMEMO_API_URL}/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ email, password }),
     });
-    const data = await response.json();
-    if (!response.ok) throw new Error(data.message);
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.message);
     if (data.token) {
       setCookie("jwt", data.token);
     }
     return data.token;
   },
   signup: async (name: string, password: string, email: string) => {
-    const response = await fetch(`${VINOMEMO_API_URL}/signup`, {
+    const res = await fetch(`${VINOMEMO_API_URL}/signup`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ name, password, email }),
     });
-    const data = await response.json();
-    if (!response.ok) throw new Error(data.message);
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.message);
     if (data.token) {
       setCookie("jwt", data.token);
     }
@@ -47,74 +47,154 @@ const api = {
     password: string;
     email: string;
   }) => {
-    const token = getCookie("jwt");
-    if (!token) throw new Error("No token found");
+    try {
+      const token = getCookie("jwt");
+      if (!token) throw new Error("No token found");
 
-    const response = await fetch(`${VINOMEMO_API_URL}/users/${id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify({ name, password, email }),
-    });
-    if (!response.ok) throw new Error("Error updating user");
-    return (await response.json()) as IUser;
+      const res = await fetch(`${VINOMEMO_API_URL}/users/${id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ name, password, email }),
+      });
+      if (!res.ok) throw new Error("Error updating user");
+      return (await res.json()) as IUser;
+    } catch (error) {
+      console.log(error);
+    }
   },
   fetch: async (endpoint: string = "") => {
-    const token = getCookie("jwt");
-    if (!token) throw new Error("No token found");
+    try {
+      const token = getCookie("jwt");
+      if (!token) throw new Error("No token found");
 
-    const res = await fetch(`${VINOMEMO_API_URL}/${endpoint}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    if (!res.ok) throw new Error("Error fetching data");
-    return await res.json();
+      const res = await fetch(`${VINOMEMO_API_URL}/${endpoint}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      if (!res.ok) throw new Error("Error fetching data");
+      return await res.json();
+    } catch (error) {
+      console.log(error);
+    }
+  },
+  getNoteById: async (id: string) => {
+    try {
+      const token = getCookie("jwt");
+      if (!token) throw new Error("No token found");
+
+      const res = await fetch(`${VINOMEMO_API_URL}/notes/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      if (!res.ok) throw new Error("Error fetching note");
+      return (await res.json()) as INote;
+    } catch (error) {
+      console.log(error);
+    }
+  },
+  getNotesByUserId: async (userId: string) => {
+    try {
+      const token = getCookie("jwt");
+      if (!token) throw new Error("No token found");
+
+      const res = await fetch(`${VINOMEMO_API_URL}/users/${userId}/notes`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      if (!res.ok) throw new Error("Error fetching notes");
+      const notes: INote[] = await res.json();
+      notes.sort((a: INote, b: INote) => {
+        return (
+          new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+        );
+      });
+      return notes;
+    } catch (error) {
+      console.log(error);
+    }
+  },
+  getNotesByName: async (name: string) => {
+    try {
+      const token = getCookie("jwt");
+      if (!token) throw new Error("No token found");
+
+      const res = await fetch(`${VINOMEMO_API_URL}/notes/search?name=${name}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      if (!res.ok) throw new Error("Error fetching notes");
+      const notes: INote[] = await res.json();
+      notes.sort((a: INote, b: INote) => {
+        return (
+          new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+        );
+      });
+      return notes;
+    } catch (error) {
+      console.log(error);
+    }
   },
   createNote: async (note: NoteFormValues) => {
-    const token = getCookie("jwt");
-    if (!token) throw new Error("No token found");
+    try {
+      const token = getCookie("jwt");
+      if (!token) throw new Error("No token found");
 
-    const res = await fetch(`${VINOMEMO_API_URL}/notes`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify(note),
-    });
-    if (!res.ok) throw new Error("Error creating note");
-    return (await res.json()) as INote;
+      const res = await fetch(`${VINOMEMO_API_URL}/notes`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(note),
+      });
+      if (!res.ok) throw new Error("Error creating note");
+      return (await res.json()) as INote;
+    } catch (error) {
+      console.log(error);
+    }
   },
   updateNote: async (id: string, note: NoteFormValues) => {
-    const token = getCookie("jwt");
-    if (!token) throw new Error("No token found");
+    try {
+      const token = getCookie("jwt");
+      if (!token) throw new Error("No token found");
 
-    const res = await fetch(`${VINOMEMO_API_URL}/notes/${id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify(note),
-    });
-    if (!res.ok) throw new Error("Error updating note");
-    return (await res.json()) as INote;
+      const res = await fetch(`${VINOMEMO_API_URL}/notes/${id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(note),
+      });
+      if (!res.ok) throw new Error("Error updating note");
+      return (await res.json()) as INote;
+    } catch (error) {
+      console.log(error);
+    }
   },
   deleteNote: async (id: string) => {
-    const token = getCookie("jwt");
-    if (!token) throw new Error("No token found");
+    try {
+      const token = getCookie("jwt");
+      if (!token) throw new Error("No token found");
 
-    const res = await fetch(`${VINOMEMO_API_URL}/notes/${id}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-      method: "DELETE",
-    });
-    if (!res.ok) throw new Error("Error deleting note");
-    return (await res.json()) as INote;
+      const res = await fetch(`${VINOMEMO_API_URL}/notes/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        method: "DELETE",
+      });
+      if (!res.ok) throw new Error("Error deleting note");
+      return (await res.json()) as INote;
+    } catch (error) {
+      console.log(error);
+    }
   },
 };
 
