@@ -36,6 +36,22 @@ const api = {
     }
     return data.token;
   },
+  getCurrentUser: async () => {
+    try {
+      const token = getCookie("jwt");
+      if (!token) throw new Error("No token found");
+
+      const res = await fetch(`${VINOMEMO_API_URL}/users/me`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      if (!res.ok) throw new Error("Error fetching user");
+      return (await res.json()) as IUser;
+    } catch (error) {
+      console.log(error);
+    }
+  },
   updateUser: async ({
     id,
     name,
