@@ -14,7 +14,7 @@ export const NotesList = ({ notes }: { notes: INote[] | undefined }) => {
         <Heading as="h2" size="md">
           My notes
         </Heading>
-        <Button as={Link} href="/notes/create">
+        <Button as={Link} href="/notes/create" data-cy="create-note">
           <AddIcon />
         </Button>
       </HStack>

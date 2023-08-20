@@ -67,6 +67,7 @@ const SelectButton: React.FC<SelectButtonProps> = ({
     <VStack spacing={0}>
       <Flex
         as={Button}
+        id={color}
         variant="outline"
         aspectRatio={1 / 1}
         borderRadius="50%"

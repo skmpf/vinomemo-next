@@ -38,6 +38,7 @@ export const ConclusionsForm: React.FC<FormFieldsContainerProps> = ({
           </FormLabel>
           <Field
             as={Select}
+            id="quality"
             name="conclusions.quality"
             placeholder="Select an option"
             focusBorderColor="gray.400"
@@ -70,6 +71,7 @@ export const ConclusionsForm: React.FC<FormFieldsContainerProps> = ({
           </FormLabel>
           <Field
             as={Textarea}
+            id="comments"
             name="conclusions.comments"
             placeholder="Something to add?"
             focusBorderColor="gray.400"

@@ -35,6 +35,7 @@ export const RadioCard: React.FC<RadioCardProps> = ({
           boxShadow: "outline",
         }}
         height={(index + 1) * height}
+        data-cy={`${input.name}.${children}`}
       />
       <Text textTransform="uppercase" fontSize="xs">
         {children}

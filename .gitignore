@@ -8,6 +8,12 @@
 # testing
 /coverage
 
+# cypress
+/cypress/downloads
+/cypress/screenshots
+/cypress/videos
+/cypress/reports
+
 # next.js
 /.next/
 /out/

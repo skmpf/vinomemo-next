@@ -104,7 +104,7 @@ export const Summary = ({ note }: { note: INote | undefined }) => {
               justifyContent="space-between"
               direction={{ base: "column", md: "row" }}
             >
-              <Heading size="xs">Alcohol</Heading>
+              <Heading size="xs">ABV</Heading>
               <Text fontSize="sm" color="gray.900" width="75%">
                 {note.information.alcohol}
               </Text>

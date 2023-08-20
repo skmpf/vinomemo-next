@@ -168,7 +168,7 @@ export const PalateForm: React.FC<FormFieldsContainerProps> = ({
           <Field
             as={Input}
             variant="flushed"
-            id="name"
+            id="flavors"
             name="palate.flavors"
             type="text"
             focusBorderColor="gray.400"

@@ -1,0 +1,34 @@
+{
+  "information": {
+    "name": "Frog's Leap Merlot",
+    "country": "USA",
+    "region": "Napa Valley",
+    "grapes": "Merlot",
+    "producer": "Rutherford",
+    "vintage": 2015,
+    "alcohol": "12.0"
+  },
+  "appearance": {
+    "intensity": "pronounced",
+    "color": "red",
+    "variant": "ruby"
+  },
+  "nose": {
+    "intensity": "pronounced",
+    "aromas": "primary aromas of raspberry, black cherry, black plum, bell pepper. secondary aromas of vanilla, chocolate. tertiary aromas of earth, tobacco"
+  },
+  "palate": {
+    "sweetness": "dry",
+    "acidity": "high",
+    "tannin": "high",
+    "alcohol": "medium",
+    "body": "full",
+    "intensity": "pronounced",
+    "flavors": "primary flavours of raspberry, black cherry, black plum, mint secondary flavours of vanilla, chocolate tertiary flavours of earth, tobacco, dried fruit",
+    "finish": "long"
+  },
+  "conclusions": {
+    "quality": "outstanding",
+    "comments": "would buy more"
+  }
+}

@@ -182,6 +182,7 @@ export const InformationForm: React.FC<FormFieldsContainerProps> = ({
           </FormLabel>
           <Field
             as={Select}
+            id="alcohol"
             name="information.alcohol"
             placeholder="Select an option"
             focusBorderColor="gray.400"

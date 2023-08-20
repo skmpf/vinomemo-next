@@ -66,7 +66,7 @@ export const NoseForm: React.FC<FormFieldsContainerProps> = ({
           <Field
             as={Input}
             variant="flushed"
-            id="name"
+            id="aromas"
             name="nose.aromas"
             type="text"
             focusBorderColor="gray.400"
