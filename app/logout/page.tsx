@@ -18,7 +18,7 @@ export default function Logout() {
       }
     };
     logoutUser();
-    router.push("/login");
+    router.replace("/");
   }, [router]);
 
   return <UserLayout></UserLayout>;
