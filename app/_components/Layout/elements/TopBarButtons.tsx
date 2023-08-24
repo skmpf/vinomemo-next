@@ -16,8 +16,8 @@ export const TopBarButtons = () => {
       const user = await api.getCurrentUser();
       user && setUser(user);
     };
-    fetchUser();
-  }, []);
+    pathname.includes("/notes") && fetchUser();
+  }, [pathname]);
 
   return (
     <HStack spacing={{ base: 2, md: 4 }}>
@@ -33,7 +33,7 @@ export const TopBarButtons = () => {
       )}
       {isProtectedRoute(pathname) && (
         <>
-          {user?.isAdmin && !pathname.includes("/backoffice") && (
+          {user?.isAdmin && (
             <Button as={Link} href="/backoffice">
               Backoffice
             </Button>
